@@ -46,9 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\PazzlePanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Classes\Petal.cs" />
     <Compile Include="Classes\Puzzle.cs" />
     <Compile Include="Controls\Buttons\LevelSelectionButton.cs">
       <SubType>Component</SubType>
@@ -67,6 +65,9 @@
     </Compile>
     <Compile Include="Controls\MainMenuControl.Designer.cs">
       <DependentUpon>MainMenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panels\PuzzlePanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PuzzleListControl.cs">
       <SubType>UserControl</SubType>

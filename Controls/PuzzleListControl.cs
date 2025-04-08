@@ -13,12 +13,12 @@ namespace JapanezePuzzle.Controls
         private PictureBox _arrowRightIcon;
 
         // The puzzle data
-        private List<Puzzle> _puzzles = new List<Puzzle>();
+        private List<Puzzle> _puzzles;
         private int _currentIndex = 0;
 
         // Two panels for sliding
-        private PuzzlePanel _currentPanel;
-        private PuzzlePanel _incomingPanel;
+        private Controls.Panels.PuzzlePanel _currentPanel;
+        private Controls.Panels.PuzzlePanel _incomingPanel;
 
         // Animation
         private Timer _slideTimer;
@@ -36,10 +36,32 @@ namespace JapanezePuzzle.Controls
             // Background
             this.BackgroundImage = Properties.Resources.gradientBackground;
 
-            // Example puzzle data
-            _puzzles.Add(new Puzzle { Name = "Puzzle #1", Rows = 5, Cols = 5 });
-            _puzzles.Add(new Puzzle { Name = "Puzzle #2", Rows = 10, Cols = 15 });
-            _puzzles.Add(new Puzzle { Name = "Puzzle #3", Rows = 15, Cols = 15 });
+            _puzzles = new List<Puzzle>();
+            // Get puzzles by difficulty
+            switch (difficulty)
+            {
+                case 0:
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #1", Rows = 5, Cols = 5 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #2", Rows = 7, Cols = 5 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #3", Rows = 5, Cols = 6 });
+                    break;
+                case 1:
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #1", Rows = 10, Cols = 10 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #2", Rows = 10, Cols = 15 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #3", Rows = 15, Cols = 10 });
+                    break;
+                case 2:
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #1", Rows = 15, Cols = 15 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #2", Rows = 17, Cols = 16 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #3", Rows = 15, Cols = 14 });
+                    break;
+                default:
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #1", Rows = 5, Cols = 5 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #2", Rows = 5, Cols = 5 });
+                    _puzzles.Add(new Puzzle { Name = "Puzzle #3", Rows = 5, Cols = 5 });
+                    break;
+
+            }
 
             // Back arrow
             _arrowBackIcon = new PictureBox();
@@ -54,8 +76,10 @@ namespace JapanezePuzzle.Controls
             {
                 if (this.ParentForm is MainForm mainForm)
                 {
-                    var mainMenu = new MainMenuControl();
-                    mainForm.SwitchControl(mainMenu);
+                    _puzzles.Clear();
+                    _slideTimer?.Stop();
+                    var levelSelection = new LevelSelectionControl();
+                    mainForm.SwitchControl(levelSelection);
                 }
             };
             this.Controls.Add(_arrowBackIcon);
@@ -67,6 +91,7 @@ namespace JapanezePuzzle.Controls
             _arrowLeftIcon.Size = new Size(50, 50);
             _arrowLeftIcon.BackColor = Color.Transparent;
             _arrowLeftIcon.Click += ArrowLeftIcon_Click;
+            _arrowLeftIcon.Visible = false;
             this.Controls.Add(_arrowLeftIcon);
 
             // Right arrow
@@ -76,11 +101,14 @@ namespace JapanezePuzzle.Controls
             _arrowRightIcon.Size = new Size(50, 50);
             _arrowRightIcon.BackColor = Color.Transparent;
             _arrowRightIcon.Click += ArrowRightIcon_Click;
+            _arrowRightIcon.Visible = false;
             this.Controls.Add(_arrowRightIcon);
 
             // Current puzzle panel
-            _currentPanel = new PuzzlePanel();
+            _currentPanel = new Controls.Panels.PuzzlePanel();
             _currentPanel.SetPuzzle(_puzzles[_currentIndex]);
+            _currentPanel.DrawPuzzle();
+            _currentPanel.Visible = false;
             this.Controls.Add(_currentPanel);
 
             // Timer for sliding
@@ -120,8 +148,9 @@ namespace JapanezePuzzle.Controls
             _slideDirection = direction;
 
             // Create the incoming panel
-            _incomingPanel = new PuzzlePanel();
+            _incomingPanel = new Controls.Panels.PuzzlePanel();
             _incomingPanel.SetPuzzle(_puzzles[_currentIndex]);
+            _incomingPanel.DrawPuzzle();
             _incomingPanel.Top = _incomingPanel.GetPanelCenterY(this.ClientSize.Height);
 
             // If going to next puzzle, the new puzzle starts from the right
@@ -220,6 +249,11 @@ namespace JapanezePuzzle.Controls
 
             _arrowRightIcon.Left = this.ClientSize.Width - _arrowRightIcon.Width - 30;
             _arrowRightIcon.Top = (this.ClientSize.Height - _arrowRightIcon.Height) / 2;
+
+            if (!_currentPanel.Visible)
+            {
+                _currentPanel.Visible = true;
+            }
         }
     }
 }

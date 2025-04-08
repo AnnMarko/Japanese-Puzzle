@@ -19,9 +19,6 @@ namespace JapanezePuzzle.Controls
         {
             InitializeComponent();
 
-            // Control settings
-            this.BackgroundImage = Properties.Resources.mainMenuBackground;
-
             // Title
             var title = new PictureBox();
             title.Image = Properties.Resources.mainMenuTitle;

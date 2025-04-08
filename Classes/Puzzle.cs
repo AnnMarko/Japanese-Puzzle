@@ -11,6 +11,7 @@ namespace JapanezePuzzle.Classes
         private string _name;
         private int _rows;
         private int _columns;
+        private bool _isSolved;
 
         public string Name
         {
@@ -26,6 +27,11 @@ namespace JapanezePuzzle.Classes
         {
             get { return _columns; }
             set { _columns = value; }
+        }
+        public bool Solved
+        {
+            get { return _isSolved; }
+            set { _isSolved = value; }
         }
     }
 }

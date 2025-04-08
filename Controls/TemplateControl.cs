@@ -23,7 +23,7 @@ namespace JapanezePuzzle.Controls
         private Timer _petalTimer;
 
         // List of petals
-        private List<Petal> _petals = new List<Petal>();
+        private List<Classes.Petal> _petals = new List<Classes.Petal>();
 
         // Random
         private Random rand = new Random();
@@ -156,7 +156,7 @@ namespace JapanezePuzzle.Controls
             // Generate new petal (max 40)
             if (rand.NextDouble() < 0.01)
             {
-                _petals.Add(new Petal
+                _petals.Add(new Classes.Petal
                 {
                     // Initial coordinates
                     X = rand.Next(0, this.Width),
@@ -224,17 +224,6 @@ namespace JapanezePuzzle.Controls
 
             // Restore the matrix
             g.Transform = matrix;
-        }
-
-        // Inner class for the petal
-        private class Petal
-        {
-            public float X;
-            public float Y;
-            public float SpeedX;
-            public float SpeedY;
-            public float Rotation;
-            public float RotationSpeed;
         }
     }
 }

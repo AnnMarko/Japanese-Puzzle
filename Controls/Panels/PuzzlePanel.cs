@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
-namespace JapanezePuzzle.Classes
+namespace JapanezePuzzle.Controls.Panels
 {
     public class PuzzlePanel : Panel
     {
@@ -22,11 +22,10 @@ namespace JapanezePuzzle.Classes
             this.Size = new Size(_size, _size);
         }
 
-        public void SetPuzzle(Puzzle puzzle)
+        public void SetPuzzle(Classes.Puzzle puzzle)
         {
             _puzzle = puzzle;
             _cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
-            DrawPuzzle();
         }
 
         public void DrawPuzzle()
