@@ -44,7 +44,7 @@ namespace JapanezePuzzle.Controls
 
             // Button Edit
             var editorButton = new Controls.Buttons.OptionButton();
-            editorButton.Text = "Edit";
+            editorButton.Text = "Sandbox";
             editorButton.Width = 250;
             editorButton.Height = 50;
             editorButton.Top = this.Height - editorButton.Height * 2 - 80;

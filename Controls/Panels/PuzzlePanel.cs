@@ -15,24 +15,39 @@ namespace JapanezePuzzle.Controls.Panels
 
         private int _size;
 
+        public int SideSize
+        {
+            get { return _size; }
+            set { _size = value; }
+        }
+        public PictureBox[,] Cells
+        {
+            get { return _cells; }
+            set { _cells = value; }
+        }
+
         public PuzzlePanel(int size = 400)
         {
-            _size = size;
-            this.DoubleBuffered = true;
-            this.Size = new Size(_size, _size);
+            SideSize = size;
+            this.Size = new Size(SideSize, SideSize);
         }
 
         public void SetPuzzle(Classes.Puzzle puzzle)
         {
             _puzzle = puzzle;
-            _cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
+            Cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
         }
 
-        public void DrawPuzzle()
+        public Classes.Puzzle GetPuzzle()
+        {
+            return _puzzle;
+        }
+
+        virtual public void DrawPuzzle()
         {
             if (_puzzle == null) return;
 
-            this.Size = new Size(_size, _size);
+            this.Size = new Size(SideSize, SideSize);
 
             int rows = _puzzle.Rows;
             int cols = _puzzle.Cols;
@@ -50,7 +65,7 @@ namespace JapanezePuzzle.Controls.Panels
                 {
                     _cells[i, j] = new PictureBox()
                     {
-                        BackColor = Color.White,
+                        BackColor = _puzzle.PuzzleCellMatrix[i, j] == 1 ? Color.Black : Color.White,
                         Width = cellSize,
                         Height = cellSize,
                         Left = j * cellSize,

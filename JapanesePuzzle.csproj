@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Classes\Petal.cs" />
     <Compile Include="Classes\Puzzle.cs" />
+    <Compile Include="Classes\PuzzleStorage.cs" />
     <Compile Include="Controls\Buttons\LevelSelectionButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,11 +73,32 @@
     <Compile Include="Controls\Panels\PuzzlePanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Panels\PuzzleSolvingPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PuzzleListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\PuzzleListControl.Designer.cs">
       <DependentUpon>PuzzleListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PuzzleSolvingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PuzzleSolvingControl.Designer.cs">
+      <DependentUpon>PuzzleSolvingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PuzzleStartConfirmationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PuzzleStartConfirmationControl.Designer.cs">
+      <DependentUpon>PuzzleStartConfirmationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ShowWinControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ShowWinControl.Designer.cs">
+      <DependentUpon>ShowWinControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TemplateControl.cs">
       <SubType>UserControl</SubType>
@@ -102,6 +127,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\rightArrowImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\waterfallBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

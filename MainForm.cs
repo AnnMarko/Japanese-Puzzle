@@ -31,8 +31,8 @@ namespace JapanezePuzzle
 
             // MainForm settings
             this.Text = "Japanese Puzzle";
-            this.Width = 800;
-            this.Height = 600;
+            this.Width = 1000;
+            this.Height = 750;
             this.MinimumSize = new Size(Width, Height);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Load += (s, e) =>
