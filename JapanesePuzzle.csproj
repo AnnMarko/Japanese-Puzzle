@@ -58,6 +58,9 @@
     <Compile Include="Controls\Buttons\OptionButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Labels\HeaderLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\LevelSelectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

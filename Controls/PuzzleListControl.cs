@@ -116,6 +116,14 @@ namespace JapanezePuzzle.Controls
             }
             this.Controls.Add(_currentPanel);
 
+            // Name of puzzle Label
+            _nameLabel = new Controls.Labels.HeaderLabel()
+            {
+                Text = "",
+            };
+            this.Controls.Add(_nameLabel);
+            _nameLabel.BringToFront();
+
             // Timer for sliding
             _slideTimer = new Timer();
             _slideTimer.Interval = 10;

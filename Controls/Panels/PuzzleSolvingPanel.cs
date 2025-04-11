@@ -251,8 +251,8 @@ namespace JapanezePuzzle.Controls.Panels
 
         private bool CheckIfPuzzleIsSolved()
         {
-            int length = _puzzle.Rows;
-            int width = _puzzle.Cols;
+            int length = _puzzle.Cols;
+            int width = _puzzle.Rows;
 
             for (int i = 0; i < _puzzle.PuzzleNumbers.Length; i++)
             {
@@ -263,7 +263,7 @@ namespace JapanezePuzzle.Controls.Panels
 
                     for (int k = 0; k < (i > 0 ? width : length); k++)
                     {
-                        switch (i > 0 ? _puzzle.PuzzleCellMatrix[j, k] : _puzzle.PuzzleCellMatrix[k, j])
+                        switch (i > 0 ? _puzzle.PuzzleCellMatrix[k, j] : _puzzle.PuzzleCellMatrix[j, k])
                         {
                             case 0:
                                 if (value != 0)

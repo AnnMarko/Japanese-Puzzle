@@ -65,16 +65,9 @@ namespace JapanezePuzzle.Controls
             this.Controls.Add(_arrowBackIcon);
 
             // Congrats label
-            _congratsLabel = new System.Windows.Forms.Label()
+            _congratsLabel = new Controls.Labels.HeaderLabel()
             {
                 Text = "Great! You did it!",
-                AutoSize = false,
-                Width = 300,
-                Height = 40,
-                Font = new Font(this.Font.FontFamily, 20f, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = Color.White,
-                BackColor = Color.LightSlateGray,
             };
             this.Controls.Add(_congratsLabel);
             _congratsLabel.BringToFront();
