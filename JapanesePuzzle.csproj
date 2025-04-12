@@ -76,6 +76,7 @@
     <Compile Include="Controls\Panels\PuzzlePanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Panels\PuzzleSandboxPanel.cs" />
     <Compile Include="Controls\Panels\PuzzleSolvingPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,6 +214,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\waterfallBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\difficultLevel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\easyLevel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\mediumLevel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

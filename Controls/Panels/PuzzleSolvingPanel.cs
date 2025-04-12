@@ -13,7 +13,6 @@ namespace JapanezePuzzle.Controls.Panels
     public class PuzzleSolvingPanel : PuzzlePanel
     {
         private Classes.Puzzle _puzzle;
-        private PictureBox[,] _cells;
 
         private int MAX_SIZE = 700;
         private int MAX_CELL_SIZE = 60;
@@ -121,6 +120,7 @@ namespace JapanezePuzzle.Controls.Panels
 
         override public void DrawPuzzle()
         {
+            Visible = false;
             if (_puzzle == null) return;
 
             int sizeX = 0;
@@ -247,6 +247,7 @@ namespace JapanezePuzzle.Controls.Panels
                     }
                 }
             }
+            Visible = true;
         }
 
         private bool CheckIfPuzzleIsSolved()

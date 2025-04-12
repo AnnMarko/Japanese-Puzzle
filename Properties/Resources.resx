@@ -124,6 +124,12 @@
   <data name="colorfulBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\colorfulBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="difficultLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\difficultLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="easyLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\easyLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="gradientBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gradientBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +144,9 @@
   </data>
   <data name="mainMenuTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\mainMenuTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mediumLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\mediumLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="musicBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\music\musicBackground.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

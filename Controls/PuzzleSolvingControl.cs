@@ -41,7 +41,6 @@ namespace JapanezePuzzle.Controls
             _puzzle = puzzle;
             _puzzlePanel = new Controls.Panels.PuzzleSolvingPanel(puzzle);
             this.Controls.Add(_puzzlePanel);
-            _puzzlePanel.DrawPuzzle();
 
             // Back arrow
             _arrowBackIcon = new PictureBox();
@@ -65,6 +64,9 @@ namespace JapanezePuzzle.Controls
 
             // Position everything
             this.Resize += (s, e) => ArrangeLayout();
+
+            // Draw the puzzle
+            _puzzlePanel.DrawPuzzle();
         }
 
         private void ArrangeLayout()
@@ -81,7 +83,7 @@ namespace JapanezePuzzle.Controls
         {
             if (this.ParentForm is MainForm mainForm)
             {
-                var showWin = new ShowWinControl(_difficulty, _currentIndex, _puzzle);
+                var showWin = new ShowWinControl(_difficulty, 0, _puzzle);
                 mainForm.SwitchControl(showWin);
             }
         }

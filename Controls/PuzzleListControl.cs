@@ -23,6 +23,9 @@ namespace JapanezePuzzle.Controls
         private Controls.Panels.PuzzlePanel _currentPanel;
         private Controls.Panels.PuzzlePanel _incomingPanel;
 
+        // Name label
+        private Controls.Labels.HeaderLabel _nameLabel;
+
         // Animation
         private Timer _slideTimer;
         private bool _isSliding = false;
@@ -119,7 +122,8 @@ namespace JapanezePuzzle.Controls
             // Name of puzzle Label
             _nameLabel = new Controls.Labels.HeaderLabel()
             {
-                Text = "",
+                Text = $"{_puzzles[_currentIndex].Name}",
+                BackColor = Color.Transparent,
             };
             this.Controls.Add(_nameLabel);
             _nameLabel.BringToFront();
@@ -159,6 +163,9 @@ namespace JapanezePuzzle.Controls
             _isSliding = true;
             _slideStep = 0;
             _slideDirection = direction;
+
+            // hide name of puzzle
+            _nameLabel.Visible = false;
 
             // Create the incoming panel
             _incomingPanel = new Controls.Panels.PuzzlePanel();
@@ -224,6 +231,10 @@ namespace JapanezePuzzle.Controls
                 _currentPanel = _incomingPanel;
                 _incomingPanel = null;
 
+                // show name of puzzle
+                _nameLabel.Text = $"{_puzzles[_currentIndex].Name}";
+                _nameLabel.Visible = true;
+
                 // final position
                 _currentPanel.Left = _currentPanel.GetPanelCenterX(this.ClientSize.Width);
                 
@@ -270,6 +281,10 @@ namespace JapanezePuzzle.Controls
 
             _arrowRightIcon.Left = this.ClientSize.Width - _arrowRightIcon.Width - 30;
             _arrowRightIcon.Top = (this.ClientSize.Height - _arrowRightIcon.Height) / 2;
+
+            // Position name label
+            _nameLabel.Left = (this.ClientSize.Width - _nameLabel.Width) / 2;
+            _nameLabel.Top = panelCenterY - 70;
 
             if (!_currentPanel.Visible)
             {

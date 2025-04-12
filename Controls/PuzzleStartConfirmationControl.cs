@@ -22,6 +22,9 @@ namespace JapanezePuzzle.Controls
         // Button start solving
         private Controls.Buttons.OptionButton _startButton;
 
+        // Name label
+        private Controls.Labels.HeaderLabel _nameLabel;
+
         // Variables storage
         private int _difficulty;
         private int _currentIndex;
@@ -77,6 +80,15 @@ namespace JapanezePuzzle.Controls
             _startButton.Click += StartButton_Click;
             this.Controls.Add(_startButton);
 
+            // Name of puzzle Label
+            _nameLabel = new Controls.Labels.HeaderLabel()
+            {
+                Text = $"{_puzzlePanel.GetPuzzle().Name}",
+                BackColor = Color.Transparent,
+            };
+            this.Controls.Add(_nameLabel);
+            _nameLabel.BringToFront();
+
             // Position everything
             this.Resize += (s, e) => ArrangeLayout();
         }
@@ -93,6 +105,10 @@ namespace JapanezePuzzle.Controls
             // Position button
             _startButton.Left = (this.ClientSize.Width - _startButton.Width) / 2;
             _startButton.Top = (int)((this.ClientSize.Height - _puzzlePanel.SideSize) / 2 + _puzzlePanel.SideSize + 10 + 0.1 * (this.ClientSize.Height - 600));
+
+            // Position name label
+            _nameLabel.Left = (this.ClientSize.Width - _nameLabel.Width) / 2;
+            _nameLabel.Top = panelCenterY - 70;
         }
 
         private void StartButton_Click(object sender, EventArgs e)

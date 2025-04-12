@@ -83,6 +83,26 @@ namespace JapanezePuzzle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap difficultLevel {
+            get {
+                object obj = ResourceManager.GetObject("difficultLevel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap easyLevel {
+            get {
+                object obj = ResourceManager.GetObject("easyLevel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gradientBackground {
             get {
                 object obj = ResourceManager.GetObject("gradientBackground", resourceCulture);
@@ -126,6 +146,16 @@ namespace JapanezePuzzle.Properties {
         internal static System.Drawing.Bitmap mainMenuTitle {
             get {
                 object obj = ResourceManager.GetObject("mainMenuTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mediumLevel {
+            get {
+                object obj = ResourceManager.GetObject("mediumLevel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -45,6 +45,7 @@ namespace JapanezePuzzle.Controls.Panels
 
         virtual public void DrawPuzzle()
         {
+            Visible = false;
             if (_puzzle == null) return;
 
             this.Size = new Size(SideSize, SideSize);
@@ -75,6 +76,7 @@ namespace JapanezePuzzle.Controls.Panels
                     this.Controls.Add(_cells[i, j]);
                 }
             }
+            Visible = true;
         }
 
         public int GetPanelCenterX(int formWidth)

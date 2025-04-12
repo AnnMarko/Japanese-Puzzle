@@ -30,6 +30,8 @@ namespace JapanezePuzzle.Controls
             _easyLevelButton = new Controls.Buttons.LevelSelectionButton();
             _easyLevelButton.Text = "Easy";
             _easyLevelButton.BackColor = Color.White;
+            _easyLevelButton.BackgroundImage = Properties.Resources.easyLevel;
+            _easyLevelButton.BackgroundImageLayout = ImageLayout.Zoom;
             _easyLevelButton.FlatAppearance.MouseOverBackColor = Color.MintCream;
             _easyLevelButton.FlatAppearance.MouseDownBackColor = Color.Honeydew;
             _easyLevelButton.TextAlign = ContentAlignment.TopCenter;
@@ -40,6 +42,8 @@ namespace JapanezePuzzle.Controls
             _mediumLevelButton = new Controls.Buttons.LevelSelectionButton();
             _mediumLevelButton.Text = "Medium";
             _mediumLevelButton.BackColor = Color.White;
+            _mediumLevelButton.BackgroundImage = Properties.Resources.mediumLevel;
+            _mediumLevelButton.BackgroundImageLayout = ImageLayout.Zoom;
             _mediumLevelButton.FlatAppearance.MouseOverBackColor = Color.Ivory;
             _mediumLevelButton.FlatAppearance.MouseDownBackColor = Color.LightYellow;
             _mediumLevelButton.TextAlign = ContentAlignment.TopCenter;
@@ -50,6 +54,8 @@ namespace JapanezePuzzle.Controls
             _difficultLevelButton = new Controls.Buttons.LevelSelectionButton();
             _difficultLevelButton.Text = "Difficult";
             _difficultLevelButton.BackColor = Color.White;
+            _difficultLevelButton.BackgroundImage = Properties.Resources.difficultLevel;
+            _difficultLevelButton.BackgroundImageLayout = ImageLayout.Zoom;
             _difficultLevelButton.FlatAppearance.MouseOverBackColor = Color.SeaShell;
             _difficultLevelButton.FlatAppearance.MouseDownBackColor = Color.MistyRose;
             _difficultLevelButton.TextAlign = ContentAlignment.TopCenter;
@@ -84,7 +90,7 @@ namespace JapanezePuzzle.Controls
         private void ArrangeLayout()
         {
             int buttonWidth = this.ClientSize.Width / 4;
-            int buttonHeight = this.ClientSize.Height / 11 * 5;
+            int buttonHeight = this.ClientSize.Height / 5 * 3;
 
             // Easy level button
             _easyLevelButton.Width = buttonWidth;
