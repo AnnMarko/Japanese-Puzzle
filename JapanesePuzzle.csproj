@@ -58,6 +58,9 @@
     <Compile Include="Controls\Buttons\OptionButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Labels\CellLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Labels\HeaderLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -76,7 +79,9 @@
     <Compile Include="Controls\Panels\PuzzlePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Panels\PuzzleSandboxPanel.cs" />
+    <Compile Include="Controls\Panels\PuzzleSandboxPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Panels\PuzzleSolvingPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -97,6 +102,12 @@
     </Compile>
     <Compile Include="Controls\PuzzleStartConfirmationControl.Designer.cs">
       <DependentUpon>PuzzleStartConfirmationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SandboxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SandboxControl.Designer.cs">
+      <DependentUpon>SandboxControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ShowWinControl.cs">
       <SubType>UserControl</SubType>

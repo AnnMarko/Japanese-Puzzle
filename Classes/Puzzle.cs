@@ -169,8 +169,22 @@ namespace JapanezePuzzle.Classes
             Difficulty = difficulty;
             IsSolved = true;
             Name = name;
-            _puzzleNumbers = CalculatePuzzleNumbers(puzzleCells);
-            _puzzleCells = puzzleCells;
+            if (puzzleCells != null)
+            {
+                _puzzleNumbers = CalculatePuzzleNumbers(puzzleCells);
+                _puzzleCells = puzzleCells;
+            }
+            else
+            {
+                _puzzleCells = new int[rows, cols];
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        _puzzleCells[i, j] = 0;
+                    }
+                }
+            }
         }
 
         public void MarkAsSolved(bool isSolved = true)

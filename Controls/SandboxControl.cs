@@ -1,5 +1,4 @@
-﻿using JapanezePuzzle.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,7 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
-    public partial class PuzzleSolvingControl : TemplateControl
+    public partial class SandboxControl : TemplateControl
     {
         // Puzzle
         private Classes.Puzzle _puzzle;
@@ -20,26 +19,20 @@ namespace JapanezePuzzle.Controls
         private PictureBox _arrowBackIcon;
 
         // Puzzle panel
-        private Controls.Panels.PuzzleSolvingPanel _puzzlePanel;
+        private Controls.Panels.PuzzleSandboxPanel _puzzlePanel;
 
-        // Variables storage
-        private int _difficulty;
-        private int _currentIndex;
+        // Button save
+        private Controls.Buttons.OptionButton _saveButton;
 
-        public PuzzleSolvingControl(Classes.Puzzle puzzle, int difficulty, int currentIndex)
+        public SandboxControl()
         {
             InitializeComponent();
 
-            // Variables storage
-            _difficulty = difficulty;
-            _currentIndex = currentIndex;
-
             // Background
-            this.BackgroundImage = Properties.Resources.lakeBackground;
+            this.BackgroundImage = Properties.Resources.waterfallBackground;
 
             // Puzzle panel
-            _puzzle = puzzle;
-            _puzzlePanel = new Controls.Panels.PuzzleSolvingPanel(puzzle);
+            _puzzlePanel = new Controls.Panels.PuzzleSandboxPanel();
             this.Controls.Add(_puzzlePanel);
 
             // Back arrow
@@ -55,12 +48,20 @@ namespace JapanezePuzzle.Controls
             {
                 if (this.ParentForm is MainForm mainForm)
                 {
-                    PuzzleStorage.SavePuzzle(_puzzle);
-                    var puzzleList = new PuzzleListControl(_difficulty, _currentIndex);
-                    mainForm.SwitchControl(puzzleList);
+                    var mainMenu = new MainMenuControl();
+                    mainForm.SwitchControl(mainMenu);
                 }
             };
             this.Controls.Add(_arrowBackIcon);
+
+            // Start button
+            _saveButton = new Controls.Buttons.OptionButton();
+            _saveButton.Text = "Save";
+            _saveButton.Width = 200;
+            _saveButton.Height = 40;
+            _saveButton.TextAlign = ContentAlignment.MiddleCenter;
+            _saveButton.Click += SaveButton_Click;
+            this.Controls.Add(_saveButton);
 
             // Position everything
             this.Resize += (s, e) => ArrangeLayout();
@@ -77,15 +78,15 @@ namespace JapanezePuzzle.Controls
 
             _puzzlePanel.Left = puzzlePanelX;
             _puzzlePanel.Top = panelCenterY;
-        }
 
-        public void UserWinEvent()
+            // Position button
+            _saveButton.Left = (this.ClientSize.Width - _saveButton.Width) / 2;
+            _saveButton.Top = (int)((this.ClientSize.Height - _puzzlePanel.SideSize) / 2 + _puzzlePanel.SideSize + 10 + 0.1 * (this.ClientSize.Height - 600));
+        }
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (this.ParentForm is MainForm mainForm)
-            {
-                var showWin = new ShowWinControl(_difficulty, 0, _puzzle);
-                mainForm.SwitchControl(showWin);
-            }
+            var saving = new PuzzleSavingControl(_puzzle);
+            ((MainForm)this.ParentForm).SwitchControl(saving);
         }
     }
 }

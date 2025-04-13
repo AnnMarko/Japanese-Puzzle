@@ -165,16 +165,9 @@ namespace JapanezePuzzle.Controls.Panels
                 {
                     int offset = maxNumbersRowsCount - _puzzle.PuzzleNumbers[0][j].Length;
 
-                    var label = new Label()
+                    var label = new Labels.CellLabel(CellSize)
                     {
                         Text = _puzzle.PuzzleNumbers[0][j][k].ToString(),
-                        AutoSize = false,
-                        Width = CellSize,
-                        Height = CellSize,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        ForeColor = Color.Black,
-                        BackColor = Color.White,
-                        BorderStyle = BorderStyle.FixedSingle,
                         Location = Cells[j + NumberedRows, k + offset].Location
                     };
                     this.Controls.Add(label);
@@ -196,16 +189,9 @@ namespace JapanezePuzzle.Controls.Panels
                 {
                     int offset = maxNumbersColsCount - _puzzle.PuzzleNumbers[1][j].Length;
 
-                    var label = new Label()
+                    var label = new Labels.CellLabel(CellSize)
                     {
                         Text = _puzzle.PuzzleNumbers[1][j][k].ToString(),
-                        AutoSize = false,
-                        Width = CellSize,
-                        Height = CellSize,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        ForeColor = Color.Black,
-                        BackColor = Color.White,
-                        BorderStyle = BorderStyle.FixedSingle,
                         Location = Cells[k + offset, j + NumberedCols].Location
                     };
                     this.Controls.Add(label);

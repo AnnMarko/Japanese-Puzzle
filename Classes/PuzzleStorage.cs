@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace JapanezePuzzle.Classes
 {
@@ -60,6 +61,21 @@ namespace JapanezePuzzle.Classes
 
             // Save updated list back to file
             SavePuzzles(puzzles, filePath);
+        }
+
+        /// <summary>
+        /// Gets max index of puzzle in the storage.
+        /// </summary>
+        public static int GetMaxId(string filePath = DefaultFileName)
+        {
+            List<Puzzle> puzzles = LoadPuzzles(filePath);
+            if (puzzles.Count == 0)
+            {
+                // If no puzzles are found, return -1
+                return -1;
+            }
+
+            return puzzles.Max(p => p.Id);
         }
     }
 }

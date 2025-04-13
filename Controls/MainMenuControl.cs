@@ -78,8 +78,8 @@ namespace JapanezePuzzle.Controls
         // Button Edit Click Event
         private void EditorButton_Click(object sender, EventArgs e)
         {
-            var editor = new MainMenuControl();
-            ((MainForm)this.ParentForm).SwitchControl(editor);
+            var sandbox = new SandboxControl();
+            ((MainForm)this.ParentForm).SwitchControl(sandbox);
         }
     }
 }
