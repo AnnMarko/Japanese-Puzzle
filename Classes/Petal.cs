@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JapanezePuzzle.Classes
 {
-    // Class for background fallyng flowers/petals
+    /// <summary>
+    /// Class for background falling flowers/petals
+    /// </summary>
     public class Petal
     {
         private float _x;
