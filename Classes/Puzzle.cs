@@ -141,7 +141,7 @@ namespace JapanezePuzzle.Classes
         }
 
         /// <summary>
-        /// Your original constructor for a new puzzle that is not yet solved.
+        /// Constructor for a new puzzle that is not yet solved.
         /// </summary>
         public Puzzle(int currentMaxId, int rows, int cols, int[][][] puzzleNumbers,
                       string name = null, int difficulty = 0)
@@ -164,6 +164,10 @@ namespace JapanezePuzzle.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Constructor for a new puzzle that is made by the user.
+        /// </summary>
         public Puzzle(int currentMaxId, int rows, int cols, int[,] puzzleCells = null, 
                     string name = null, int difficulty = 0)
         {
@@ -185,6 +189,8 @@ namespace JapanezePuzzle.Classes
                 PuzzleNumbers = CalculatePuzzleNumbers();
             }
         }
+
+        // Fill all cells of the puzzle with zero (unpainted)
         public void FillAllCellsWithZero()
         {
             for (int i = 0; i < Rows; i++)
@@ -196,16 +202,19 @@ namespace JapanezePuzzle.Classes
             }
         }
 
+        // Mark the puzzle as solved or unsolved
         public void MarkAsSolved(bool isSolved = true)
         {
             IsSolved = isSolved;
         }
 
+        // Set the name of the puzzle
         public void SetName(string name)
         {
             Name = name;
         }
 
+        // Return the array of numbers of the puzzle rows and columns
         public int[][][] CalculatePuzzleNumbers()
         {
             int length = PuzzleCellMatrix.GetLength(0);
@@ -274,6 +283,7 @@ namespace JapanezePuzzle.Classes
             return puzzleNumbers;
         }
 
+        // Check if the puzzle has at least one number in the puzzleNumbers array (puzzle is not empty)
         public bool HasAtLeastOneNumber()
         {
             int length = PuzzleCellMatrix.GetLength(0);
@@ -295,6 +305,7 @@ namespace JapanezePuzzle.Classes
             return false;
         }
 
+        // Static method that creates a list of hardcoded puzzles if there are no puzzles in the database
         static public List<Puzzle> CreateHardcodedPuzzles()
         {
             var puzzles = new List<Puzzle>();
