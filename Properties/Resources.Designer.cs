@@ -73,16 +73,6 @@ namespace JapanezePuzzle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap colorfulBackground {
-            get {
-                object obj = ResourceManager.GetObject("colorfulBackground", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap difficultLevel {
             get {
                 object obj = ResourceManager.GetObject("difficultLevel", resourceCulture);

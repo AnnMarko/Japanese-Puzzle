@@ -155,11 +155,9 @@ namespace JapanezePuzzle.Controls
             }
             // Set puzzle fields
             _puzzle.Name = _nameTextBox.Text;
-            _puzzle.FillAllCellsWithZero();
             _puzzle.IsSolved = false;
 
-            PuzzleStorage.SavePuzzle(_puzzle);
-            var mainMenu = new MainMenuControl();
+            var mainMenu = new ShowSaveSuccessControl(_puzzle);
             ((MainForm)this.ParentForm).SwitchControl(mainMenu);
         }
     }

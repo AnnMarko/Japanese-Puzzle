@@ -121,9 +121,6 @@
   <data name="backArrowImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\backArrowImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="colorfulBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\colorfulBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="difficultLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\difficultLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
