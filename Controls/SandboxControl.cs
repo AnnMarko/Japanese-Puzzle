@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JapanezePuzzle.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,16 +25,29 @@ namespace JapanezePuzzle.Controls
         // Button save
         private Controls.Buttons.OptionButton _saveButton;
 
-        public SandboxControl()
+        public SandboxControl(Classes.Puzzle puzzle = null)
         {
             InitializeComponent();
 
             // Background
             this.BackgroundImage = Properties.Resources.waterfallBackground;
 
+            // Puzzle
+            if (puzzle == null)
+            {
+                _puzzle = new Classes.Puzzle(PuzzleStorage.GetMaxId(), 5, 5);
+            }
+            else
+            {
+                _puzzle = puzzle;
+            }
+
             // Puzzle panel
-            _puzzlePanel = new Controls.Panels.PuzzleSandboxPanel();
+            _puzzlePanel = new Controls.Panels.PuzzleSandboxPanel(_puzzle);
             this.Controls.Add(_puzzlePanel);
+
+            // Draw the puzzle
+            _puzzlePanel.DrawPuzzle();
 
             // Back arrow
             _arrowBackIcon = new PictureBox();
@@ -65,9 +79,6 @@ namespace JapanezePuzzle.Controls
 
             // Position everything
             this.Resize += (s, e) => ArrangeLayout();
-
-            // Draw the puzzle
-            _puzzlePanel.DrawPuzzle();
         }
 
         private void ArrangeLayout()
@@ -85,6 +96,15 @@ namespace JapanezePuzzle.Controls
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            // Save current puzzle numbers
+            _puzzle.PuzzleNumbers = _puzzle.CalculatePuzzleNumbers();
+
+            // Check if puzzle doesn't have any numbers
+            if (!_puzzle.HasAtLeastOneNumber())
+            {
+                MessageBox.Show("Please draw the picture before saving.", "Puzzle is empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             var saving = new PuzzleSavingControl(_puzzle);
             ((MainForm)this.ParentForm).SwitchControl(saving);
         }

@@ -115,7 +115,11 @@ namespace JapanezePuzzle.Classes
         }
 
         [JsonIgnore]
-        public int[,] PuzzleCellMatrix => _puzzleCells;
+        public int[,] PuzzleCellMatrix
+        {
+            get => _puzzleCells;
+            set => _puzzleCells = value;
+        }
 
 
         /// <summary>
@@ -150,13 +154,13 @@ namespace JapanezePuzzle.Classes
             _name = name;
             _puzzleNumbers = puzzleNumbers;
 
-            // Initialize _puzzleCells as an all-zero 2D array
-            _puzzleCells = new int[rows, cols];
+            // Initialize PuzzleCellMatrix as an all-zero 2D array
+            PuzzleCellMatrix = new int[rows, cols];
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    _puzzleCells[i, j] = 0;
+                    PuzzleCellMatrix[i, j] = 0;
                 }
             }
         }
@@ -171,18 +175,23 @@ namespace JapanezePuzzle.Classes
             Name = name;
             if (puzzleCells != null)
             {
-                _puzzleNumbers = CalculatePuzzleNumbers(puzzleCells);
-                _puzzleCells = puzzleCells;
+                PuzzleNumbers = CalculatePuzzleNumbers();
+                PuzzleCellMatrix = puzzleCells;
             }
             else
             {
-                _puzzleCells = new int[rows, cols];
-                for (int i = 0; i < rows; i++)
+                PuzzleCellMatrix = new int[rows, cols];
+                FillAllCellsWithZero();
+                PuzzleNumbers = CalculatePuzzleNumbers();
+            }
+        }
+        public void FillAllCellsWithZero()
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
                 {
-                    for (int j = 0; j < cols; j++)
-                    {
-                        _puzzleCells[i, j] = 0;
-                    }
+                    PuzzleCellMatrix[i, j] = 0;
                 }
             }
         }
@@ -197,10 +206,10 @@ namespace JapanezePuzzle.Classes
             Name = name;
         }
 
-        private int[][][] CalculatePuzzleNumbers(int[,] puzzleCells)
+        public int[][][] CalculatePuzzleNumbers()
         {
-            int length = puzzleCells.GetLength(0);
-            int width = puzzleCells.GetLength(1);
+            int length = PuzzleCellMatrix.GetLength(0);
+            int width = PuzzleCellMatrix.GetLength(1);
 
             int[][][] puzzleNumbers = new int[][][]
             {
@@ -219,7 +228,7 @@ namespace JapanezePuzzle.Classes
 
                     for (int k = 0; k < (i > 0 ? width : length); k++)
                     {
-                        switch (i > 0 ? puzzleCells[k, j] : puzzleCells[j, k])
+                        switch (i > 0 ? PuzzleCellMatrix[k, j] : PuzzleCellMatrix[j, k])
                         {
                             case 0:
                                 if (value != 0)
@@ -238,10 +247,399 @@ namespace JapanezePuzzle.Classes
                         numbers[numberIndex++] = value;
                         value = 0;
                     }
-                    puzzleNumbers[i][j] = numbers;
+                    int numbersCount = 0;
+                    for (int k = 0; k < numbers.Length; k++)
+                    {
+                        if (numbers[k] != 0)
+                        {
+                            numbersCount++;
+                        }
+                    }
+                    int[] numbersToSave;
+                    if (numbersCount == 0)
+                    {
+                        numbersToSave = new int[] { 0 };
+                    }
+                    else
+                    {
+                        numbersToSave = new int[numbersCount];
+                        for (int k = 0; k < numbersToSave.Length; k++)
+                        {
+                            numbersToSave[k] = numbers[k];
+                        }
+                    }
+                    puzzleNumbers[i][j] = numbersToSave;
                 }
             }
             return puzzleNumbers;
+        }
+
+        public bool HasAtLeastOneNumber()
+        {
+            int length = PuzzleCellMatrix.GetLength(0);
+            int width = PuzzleCellMatrix.GetLength(1);
+
+            for (int i = 0; i < PuzzleNumbers.Length; i++)
+            {
+                for (int j = 0; j < (i > 0 ? length : width); j++)
+                {
+                    for (int k = 0; k < PuzzleNumbers[i][j].Length; k++)
+                    {
+                        if (PuzzleNumbers[i][j][k] == 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        static public List<Puzzle> CreateHardcodedPuzzles()
+        {
+            var puzzles = new List<Puzzle>();
+
+            puzzles.Add(
+            new Puzzle(
+                -1, 13, 12,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 8 },
+                        new int[] { 2, 2 },
+                        new int[] { 2, 2 },
+                        new int[] { 1, 4, 1 },
+                        new int[] { 1, 2, 2, 1 },
+                        new int[] { 1, 1, 1, 1 },
+                        new int[] { 1, 1, 1, 1 },
+                        new int[] { 1, 1, 1, 1 },
+                        new int[] { 1, 2, 2, 2 },
+                        new int[] { 2, 3, 3 },
+                        new int[] { 2 },
+                        new int[] { 2, 2 },
+                        new int[] { 7 }
+                    },
+                    new int[][]
+                    {
+                        new int[] { 8 },
+                        new int[] { 2, 2 },
+                        new int[] { 2, 2 },
+                        new int[] { 1, 5, 2 },
+                        new int[] { 1, 2, 2, 1 },
+                        new int[] { 1, 1, 1, 1 },
+                        new int[] { 1, 1, 1, 1 },
+                        new int[] { 1, 2, 1, 1 },
+                        new int[] { 1, 6, 1 },
+                        new int[] { 2, 1, 2 },
+                        new int[] { 2, 2, 1 },
+                        new int[] { 7 }
+                    }
+                },
+                "At",
+                1
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                0, 5, 5,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1, 1 },
+                        new int[] { 5 },
+                        new int[] { 5 },
+                        new int[] { 3 },
+                        new int[] { 1 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 2 },
+                        new int[] { 4 },
+                        new int[] { 4 },
+                        new int[] { 4 },
+                        new int[] { 2 },
+                    }
+                },
+                "Heart"
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                1, 5, 5,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1, 1, 1 },
+                        new int[] { 1, 1 },
+                        new int[] { 1, 1, 1 },
+                        new int[] { 1, 1 },
+                        new int[] { 1, 1, 1 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1, 1, 1 },
+                        new int[] { 1, 1 },
+                        new int[] { 1, 1, 1 },
+                        new int[] { 1, 1 },
+                        new int[] { 1, 1, 1 },
+                    }
+                },
+                "Chess"
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                2, 5, 5,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 2 },
+                        new int[] { 1 },
+                        new int[] { 5 },
+                        new int[] { 3 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 2 },
+                        new int[] { 5 },
+                        new int[] { 1, 2 },
+                        new int[] { 1 },
+                    }
+                },
+                "Boat"
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                3, 5, 5,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 2, 1 },
+                        new int[] { 4 },
+                        new int[] { 2, 1 },
+                        new int[] { 1 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 3 },
+                        new int[] { 5 },
+                        new int[] { 1 },
+                        new int[] { 1, 1 },
+                    }
+                },
+                "Fish"
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                4, 5, 5,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 2, 1 },
+                        new int[] { 2 },
+                        new int[] { 2, 2 },
+                        new int[] { 2 },
+                        new int[] { 3 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1, 2 },
+                        new int[] { 1, 2 },
+                        new int[] { 1, 1 },
+                        new int[] { 2, 1 },
+                        new int[] { 1, 1, 1 },
+                    }
+                },
+                "Tetris"
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                5, 10, 9,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 3 },
+                        new int[] { 2, 2 },
+                        new int[] { 2, 2 },
+                        new int[] { 9 },
+                        new int[] { 7 },
+                        new int[] { 1, 1, 1 },
+                        new int[] { 1, 1, 1 },
+                        new int[] { 4, 1 },
+                        new int[] { 4, 1 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 7 },
+                        new int[] { 4, 2 },
+                        new int[] { 2, 2, 2 },
+                        new int[] { 2, 6 },
+                        new int[] { 2, 2 },
+                        new int[] { 4 },
+                        new int[] { 7 },
+                        new int[] { 1 },
+                    }
+                },
+                "House",
+                1
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                6, 9, 9,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 1 },
+                        new int[] { 5 },
+                        new int[] { 7 },
+                        new int[] { 9 },
+                        new int[] { 1, 1, 1, 1, 1 },
+                        new int[] { 1 },
+                        new int[] { 1 },
+                        new int[] { 1, 1 },
+                        new int[] { 3 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 2 },
+                        new int[] { 2 },
+                        new int[] { 4, 2 },
+                        new int[] { 3, 1 },
+                        new int[] { 9 },
+                        new int[] { 3 },
+                        new int[] { 4 },
+                        new int[] { 2 },
+                        new int[] { 2 },
+                    }
+                },
+                "Umbrella",
+                1
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                7, 15, 15,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 3 },
+                        new int[] { 3, 1 },
+                        new int[] { 3, 1 },
+                        new int[] { 5, 2 },
+                        new int[] { 6, 3 },
+                        new int[] { 2, 6, 2 },
+                        new int[] { 4, 8 },
+                        new int[] { 2, 2, 8 },
+                        new int[] { 5, 5, 2 },
+                        new int[] { 3, 5, 2 },
+                        new int[] { 7, 2 },
+                        new int[] { 5, 1 },
+                        new int[] { 4, 1 },
+                        new int[] { 4 },
+                        new int[] { 3 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 2 },
+                        new int[] { 4 },
+                        new int[] { 2, 2 },
+                        new int[] { 7 },
+                        new int[] { 1, 3, 2 },
+                        new int[] { 3, 3 },
+                        new int[] { 10 },
+                        new int[] { 12 },
+                        new int[] { 13 },
+                        new int[] { 4, 6, 3 },
+                        new int[] { 2, 4, 2 },
+                        new int[] { 1, 2, 1 },
+                        new int[] { 4 },
+                        new int[] { 8 },
+                        new int[] { 4, 5 },
+                    }
+                },
+                "Big fish",
+                2
+                )
+            );
+
+            puzzles.Add(
+            new Puzzle(
+                8, 15, 18,
+                new int[][][]
+                {
+                    new int[][]
+                    {
+                        new int[] { 3, 4 },
+                        new int[] { 1, 6 },
+                        new int[] { 1, 1, 1, 1, 1, 6 },
+                        new int[] { 3, 1, 6 },
+                        new int[] { 5, 2, 1, 2 },
+                        new int[] { 2, 6, 1, 2, 1 },
+                        new int[] { 1, 2, 3, 2, 1 },
+                        new int[] { 3, 1 },
+                        new int[] { 2, 2 },
+                        new int[] { 3, 3 },
+                        new int[] { 3, 3 },
+                        new int[] { 3, 5 },
+                        new int[] { 3, 5 },
+                        new int[] { 1, 1, 1 },
+                        new int[] { 8 },
+                    },
+                    new int[][]
+                    {
+                        new int[] { 1, 6 },
+                        new int[] { 3, 4 },
+                        new int[] { 3, 2, 2 },
+                        new int[] { 4, 3 },
+                        new int[] { 1, 2, 2, 1 },
+                        new int[] { 1, 3 },
+                        new int[] { 1, 1 },
+                        new int[] { 1, 3 },
+                        new int[] { 3, 2, 2, 1 },
+                        new int[] { 1, 1, 1, 4 },
+                        new int[] { 1, 1, 3, 2, 1 },
+                        new int[] { 1, 3, 1 },
+                        new int[] { 5, 3 },
+                        new int[] { 4, 2, 3 },
+                        new int[] { 4, 4 },
+                        new int[] { 4 },
+                        new int[] { 5 },
+                        new int[] { 6 },
+                    }
+                },
+                "Pelican",
+                2
+                )
+            );
+
+            return puzzles;
         }
     }
 }

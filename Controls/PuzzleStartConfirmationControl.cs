@@ -47,7 +47,7 @@ namespace JapanezePuzzle.Controls
 
             // Back arrow
             _arrowBackIcon = new PictureBox();
-            _arrowBackIcon.Image = Properties.Resources.backArrowImage; // some arrow icon
+            _arrowBackIcon.Image = Properties.Resources.backArrowImage;
             _arrowBackIcon.SizeMode = PictureBoxSizeMode.Zoom;
             _arrowBackIcon.Size = new Size(40, 40);
             _arrowBackIcon.BackColor = Color.Transparent;

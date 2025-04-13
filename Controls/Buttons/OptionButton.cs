@@ -10,7 +10,7 @@ namespace JapanezePuzzle.Controls.Buttons
 {
     public class OptionButton : Button
     {
-        public OptionButton() : base()
+        public OptionButton()
         {
             // Button settings
             this.FlatStyle = FlatStyle.Flat;

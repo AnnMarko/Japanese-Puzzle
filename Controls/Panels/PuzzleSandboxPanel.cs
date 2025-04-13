@@ -53,17 +53,20 @@ namespace JapanezePuzzle.Controls.Panels
             set => _sizeOfCell = value;
         }
 
-        public PuzzleSandboxPanel()
+        public PuzzleSandboxPanel(Classes.Puzzle puzzle)
         {
-            // Create puzzle object
-            _puzzle = new Classes.Puzzle(PuzzleStorage.GetMaxId(), 5, 5);
+            // Puzzle
+            _puzzle = puzzle;
 
             NumberedRows = 3;
             NumberedCols = 3;
             Rows = _puzzle.Rows + NumberedRows;
             Cols = _puzzle.Cols + NumberedCols;
 
-            InitializePuzzleNumbers();
+            if (!_puzzle.HasAtLeastOneNumber())
+            {
+                InitializePuzzleNumbers();
+            }
 
             int maxCells = Rows;
 
@@ -108,6 +111,15 @@ namespace JapanezePuzzle.Controls.Panels
             {
                 for (int j = 0; j < Rows; j++)
                 {
+                    Cells[i, j] = new PictureBox()
+                    {
+                        BackColor = Color.White,
+                        Width = CellSize,
+                        Height = CellSize,
+                        Left = j * CellSize + ((int)(Math.Max(j - NumberedCols, 0) / 5)) * 2 + (j - NumberedCols >= 0 ? 5 : 0),
+                        Top = i * CellSize + ((int)(Math.Max(i - NumberedRows, 0) / 5)) * 2 + (i - NumberedRows >= 0 ? 5 : 0),
+                        BorderStyle = (i < NumberedRows && j < NumberedCols) ? BorderStyle.None : BorderStyle.FixedSingle,
+                    };
                     if (i < NumberedRows ^ j < NumberedCols) // xor
                     {
                         var label = new Labels.CellLabel(CellSize)
@@ -127,19 +139,20 @@ namespace JapanezePuzzle.Controls.Panels
                             _labelsCols[j, i - 3] = label;
                         }
                     }
-                    Cells[i, j] = new PictureBox()
+                    if (i >= NumberedRows && j >= NumberedCols)
                     {
-                        BackColor = Color.White,
-                        ForeColor = Color.Black,
-                        Width = CellSize,
-                        Height = CellSize,
-                        Left = j * CellSize + ((int)(Math.Max(j - NumberedCols, 0) / 5)) * 2 + (j - NumberedCols >= 0 ? 5 : 0),
-                        Top = i * CellSize + ((int)(Math.Max(i - NumberedRows, 0) / 5)) * 2 + (i - NumberedRows >= 0 ? 5 : 0),
-                        BorderStyle = (i < NumberedRows && j < NumberedCols) ? BorderStyle.None : BorderStyle.FixedSingle,
-                    };
+                        bool isPainted = _puzzle.PuzzleCellMatrix[i - NumberedCols, j - NumberedRows] == 1;
+                        if (isPainted)
+                        {
+                            Cells[i, j].BackColor = Color.Black;
+                        }
+                    }
                     this.Controls.Add(Cells[i, j]);
                 }
             }
+
+            // Write numbers if there are
+            UpdatePuzzleNumbers();
 
             // Size with offsets
             sizeX = sizeX + (Cols - 1) * CellSize + ((int)(Math.Max((Cols - 1) - NumberedCols, 0) / 5)) * 2 + ((Cols - 1) - NumberedCols >= 0 ? 5 : 0) + CellSize;

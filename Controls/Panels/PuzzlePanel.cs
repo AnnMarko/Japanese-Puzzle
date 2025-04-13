@@ -26,8 +26,20 @@ namespace JapanezePuzzle.Controls.Panels
             set { _cells = value; }
         }
 
-        public PuzzlePanel(int size = 400)
+        public PuzzlePanel(Classes.Puzzle puzzle = null, int size = 400)
         {
+            // Double Buffer
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer
+                          | ControlStyles.UserPaint
+                          | ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+
+            // Pazzle
+            if (puzzle != null)
+            {
+                _puzzle = puzzle;
+                Cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
+            }
             SideSize = size;
             this.Size = new Size(SideSize, SideSize);
         }

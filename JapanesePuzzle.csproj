@@ -91,6 +91,12 @@
     <Compile Include="Controls\PuzzleListControl.Designer.cs">
       <DependentUpon>PuzzleListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PuzzleSavingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PuzzleSavingControl.Designer.cs">
+      <DependentUpon>PuzzleSavingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PuzzleSolvingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </Compile>
     <Compile Include="Controls\TemplateControl.Designer.cs">
       <DependentUpon>TemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxes\NameTextBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

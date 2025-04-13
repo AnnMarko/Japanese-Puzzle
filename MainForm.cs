@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JapanezePuzzle.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,6 +52,17 @@ namespace JapanezePuzzle
             axWindowsMediaPlayer1.settings.setMode("loop", true);
             axWindowsMediaPlayer1.settings.volume = 2;
             //axWindowsMediaPlayer1.Ctlcontrols.play();
+
+            // JSON settings
+            // Attempt to load from JSON
+            List<Classes.Puzzle> puzzles = PuzzleStorage.LoadPuzzles();
+
+            // If empty, create them in code and save
+            if (puzzles == null || PuzzleStorage.LoadPuzzles().Count == 0)
+            {
+                puzzles = Classes.Puzzle.CreateHardcodedPuzzles();
+                PuzzleStorage.SavePuzzles(puzzles);
+            }
 
             // Start with main menu controls
             SwitchControl(new Controls.MainMenuControl());

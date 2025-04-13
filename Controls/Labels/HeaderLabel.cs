@@ -13,7 +13,7 @@ namespace JapanezePuzzle.Controls.Labels
         public HeaderLabel()
         {
             this.AutoSize = false;
-            this.Width = 300;
+            this.Width = 450;
             this.Height = 40;
             this.Font = new Font(this.Font.FontFamily, 20f, FontStyle.Bold);
             this.TextAlign = ContentAlignment.MiddleCenter;
