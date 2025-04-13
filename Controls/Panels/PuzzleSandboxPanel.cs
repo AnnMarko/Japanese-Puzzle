@@ -97,13 +97,13 @@ namespace JapanezePuzzle.Controls.Panels
         private void InitializePuzzleNumbers()
         {
             _puzzle.PuzzleNumbers = new int[2][][];
-            _puzzle.PuzzleNumbers[0] = new int[_puzzle.Cols][];
-            _puzzle.PuzzleNumbers[1] = new int[_puzzle.Rows][];
-            for (int i = 0; i < _puzzle.Cols; i++)
+            _puzzle.PuzzleNumbers[0] = new int[_puzzle.Rows][];
+            _puzzle.PuzzleNumbers[1] = new int[_puzzle.Cols][];
+            for (int i = 0; i < _puzzle.Rows; i++)
             {
                 _puzzle.PuzzleNumbers[0][i] = new int[] { 0 };
             }
-            for (int i = 0; i < _puzzle.Rows; i++)
+            for (int i = 0; i < _puzzle.Cols; i++)
             {
                 _puzzle.PuzzleNumbers[1][i] = new int[] { 0 };
             }
@@ -115,11 +115,14 @@ namespace JapanezePuzzle.Controls.Panels
         override public void DrawPuzzle()
         {
             Visible = false;
-            if (_puzzle == null) return;
+            if (_puzzle == null)
+            {
+                return;
+            }
 
             int sizeX = 0;
             int sizeY = 0;
-            // Draw cells firstly
+            // Draw cells and fill them if needed
             for (int i = 0; i < Cols; i++)
             {
                 for (int j = 0; j < Rows; j++)
@@ -145,11 +148,11 @@ namespace JapanezePuzzle.Controls.Panels
                         label.BringToFront();
                         if (i < NumberedRows)
                         {
-                            _labelsRows[i, j - 3] = label;
+                            _labelsRows[i, j - NumberedRows] = label;
                         }
                         else if (j < NumberedCols)
                         {
-                            _labelsCols[j, i - 3] = label;
+                            _labelsCols[j, i - NumberedCols] = label;
                         }
                     }
                     if (i >= NumberedRows && j >= NumberedCols)
@@ -172,7 +175,7 @@ namespace JapanezePuzzle.Controls.Panels
             sizeY = sizeY + (Rows - 1) * CellSize + ((int)(Math.Max((Rows - 1) - NumberedRows, 0) / 5)) * 2 + ((Rows - 1) - NumberedRows >= 0 ? 5 : 0) + CellSize;
             this.Size = new Size(sizeX, sizeY);
 
-            // Add functions to fillable cells and fill them if needed
+            // Add functions to fillable cells
             for (int i = NumberedRows; i < Rows; i++)
             {
                 for (int j = NumberedCols; j < Cols; j++)
