@@ -9,10 +9,14 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls.Labels
 {
+    /// <summary>
+    /// Represents a label for a cell in the puzzle grid.
+    /// </summary>
     internal class CellLabel : Label
     {
         public CellLabel(int size)
         {
+            // Label settings
             this.AutoSize = false;
             this.Width = size;
             this.Height = size;

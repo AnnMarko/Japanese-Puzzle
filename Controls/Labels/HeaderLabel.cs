@@ -8,10 +8,14 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls.Labels
 {
+    /// <summary>
+    /// Represents a label for the name of the puzzle.
+    /// </summary>
     public class HeaderLabel : Label
     {
         public HeaderLabel()
         {
+            // Label settings
             this.AutoSize = false;
             this.Width = 450;
             this.Height = 40;
