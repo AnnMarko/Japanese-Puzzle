@@ -5,7 +5,9 @@ using System.Linq;
 
 namespace JapanezePuzzle.Classes
 {
-    // Static class for saving and loading puzzles from json file
+    /// <summary>
+    /// Static class for saving and loading puzzles from json file.
+    /// </summary>
     public static class PuzzleStorage
     {
         private const string DefaultFileName = "puzzles.json";
@@ -64,7 +66,7 @@ namespace JapanezePuzzle.Classes
         }
 
         /// <summary>
-        /// Gets max index of puzzle in the storage.
+        /// Gets the max index of puzzles in the storage.
         /// </summary>
         public static int GetMaxId(string filePath = DefaultFileName)
         {
