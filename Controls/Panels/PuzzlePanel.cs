@@ -14,6 +14,7 @@ namespace JapanezePuzzle.Controls.Panels
     public class PuzzlePanel : Panel
     {
         private Classes.Puzzle _puzzle;
+
         private PictureBox[,] _cells;
 
         private int _size;

@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls.Panels
 {
+    /// <summary>
+    /// This class represents a panel that displays a puzzle in a sandbox format (editing mode).
+    /// </summary>
     internal class PuzzleSandboxPanel : PuzzlePanel
     {
         private Classes.Puzzle _puzzle;
@@ -58,22 +61,26 @@ namespace JapanezePuzzle.Controls.Panels
             // Puzzle
             _puzzle = puzzle;
 
+            // Rows and cols
             NumberedRows = 3;
             NumberedCols = 3;
             Rows = _puzzle.Rows + NumberedRows;
             Cols = _puzzle.Cols + NumberedCols;
 
+            // Make sure the puzzle has a numbers array
             if (!_puzzle.HasAtLeastOneNumber())
             {
                 InitializePuzzleNumbers();
             }
 
+            // Size
             int maxCells = Rows;
 
             CellSize = Math.Min(MAX_SIZE / maxCells, MAX_CELL_SIZE);
             Size = new Size(CellSize * Cols, CellSize * Rows);
             SideSize = CellSize * Math.Max(Cols, Rows);
 
+            // Cells array
             Cells = new PictureBox[Rows, Cols];
 
             // Labels
@@ -84,6 +91,9 @@ namespace JapanezePuzzle.Controls.Panels
             BackColor = Color.Black;
         }
 
+        /// <summary>
+        /// Initializes the puzzle numbers array.
+        /// </summary>
         private void InitializePuzzleNumbers()
         {
             _puzzle.PuzzleNumbers = new int[2][][];
@@ -99,6 +109,9 @@ namespace JapanezePuzzle.Controls.Panels
             }
         }
 
+        /// <summary>
+        /// Draws the puzzle on the panel.
+        /// </summary>
         override public void DrawPuzzle()
         {
             Visible = false;
@@ -183,6 +196,9 @@ namespace JapanezePuzzle.Controls.Panels
             Visible = true;
         }
 
+        /// <summary>
+        /// Updates the puzzle numbers displayed on the panel.
+        /// </summary>
         private void UpdatePuzzleNumbers()
         {
             // Firstly clear all labels
@@ -239,6 +255,10 @@ namespace JapanezePuzzle.Controls.Panels
             }
         }
 
+        /// <summary>
+        /// Calculates the numbers for the puzzle based on the current state of the puzzle.
+        /// </summary>
+        /// <returns></returns>
         private int[][][] CalculatePuzzleNumbers()
         {
             int length = _puzzle.Cols;
