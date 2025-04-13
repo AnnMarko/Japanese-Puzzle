@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace JapanezePuzzle.Classes
 {
-    // Class for japanese puzzles
+    /// <summary>
+    /// Class representing a puzzle.
+    /// </summary>
     public class Puzzle
     {
         // Private fields
@@ -190,7 +192,9 @@ namespace JapanezePuzzle.Classes
             }
         }
 
-        // Fill all cells of the puzzle with zero (unpainted)
+        /// <summary>
+        /// Fill all cells of the puzzle with zero (unpainted).
+        /// </summary>
         public void FillAllCellsWithZero()
         {
             for (int i = 0; i < Rows; i++)
@@ -202,19 +206,28 @@ namespace JapanezePuzzle.Classes
             }
         }
 
-        // Mark the puzzle as solved or unsolved
+        /// <summary>
+        /// Mark the puzzle as solved or unsolved.
+        /// </summary>
+        /// <param name="isSolved"></param>
         public void MarkAsSolved(bool isSolved = true)
         {
             IsSolved = isSolved;
         }
 
-        // Set the name of the puzzle
+        /// <summary>
+        /// Set the name of the puzzle.
+        /// </summary>
+        /// <param name="name"></param>
         public void SetName(string name)
         {
             Name = name;
         }
 
-        // Return the array of numbers of the puzzle rows and columns
+        /// <summary>
+        /// Calculate the numbers for the puzzle rows and columns based on the current state of the puzzle cells.
+        /// </summary>
+        /// <returns></returns>
         public int[][][] CalculatePuzzleNumbers()
         {
             int length = PuzzleCellMatrix.GetLength(0);
@@ -283,7 +296,10 @@ namespace JapanezePuzzle.Classes
             return puzzleNumbers;
         }
 
-        // Check if the puzzle has at least one number in the puzzleNumbers array (puzzle is not empty)
+        /// <summary>
+        /// Check if the puzzle has at least one number in the puzzleNumbers array (puzzle is not empty).
+        /// </summary>
+        /// <returns></returns>
         public bool HasAtLeastOneNumber()
         {
             int length = PuzzleCellMatrix.GetLength(0);
@@ -305,7 +321,10 @@ namespace JapanezePuzzle.Classes
             return false;
         }
 
-        // Static method that creates a list of hardcoded puzzles if there are no puzzles in the database
+        /// <summary>
+        /// Creates a list of hardcoded puzzles if there are no puzzles in the database.
+        /// </summary>
+        /// <returns></returns>
         static public List<Puzzle> CreateHardcodedPuzzles()
         {
             var puzzles = new List<Puzzle>();
