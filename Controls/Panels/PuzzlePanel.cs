@@ -8,6 +8,9 @@ using System.Drawing;
 
 namespace JapanezePuzzle.Controls.Panels
 {
+    /// <summary>
+    /// This class represents a panel that displays a puzzle.
+    /// </summary>
     public class PuzzlePanel : Panel
     {
         private Classes.Puzzle _puzzle;
@@ -26,35 +29,53 @@ namespace JapanezePuzzle.Controls.Panels
             set { _cells = value; }
         }
 
+        /// <summary>
+        /// Constructor for the PuzzlePanel class.
+        /// </summary>
+        /// <param name="puzzle"></param>
+        /// <param name="size"></param>
         public PuzzlePanel(Classes.Puzzle puzzle = null, int size = 400)
         {
-            // Double Buffer
+            // Double buffer settings
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer
                           | ControlStyles.UserPaint
                           | ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
 
-            // Pazzle
+            // Puzzle
             if (puzzle != null)
             {
                 _puzzle = puzzle;
                 Cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
             }
+
+            // Panel size
             SideSize = size;
             this.Size = new Size(SideSize, SideSize);
         }
 
+        /// <summary>
+        /// Sets the puzzle for the panel.
+        /// </summary>
+        /// <param name="puzzle"></param>
         public void SetPuzzle(Classes.Puzzle puzzle)
         {
             _puzzle = puzzle;
             Cells = new PictureBox[_puzzle.Rows, _puzzle.Cols];
         }
 
+        /// <summary>
+        /// Gets the puzzle from the panel.
+        /// </summary>
+        /// <returns></returns>
         public Classes.Puzzle GetPuzzle()
         {
             return _puzzle;
         }
 
+        /// <summary>
+        /// Draws the puzzle on the panel.
+        /// </summary>
         virtual public void DrawPuzzle()
         {
             Visible = false;
@@ -91,11 +112,21 @@ namespace JapanezePuzzle.Controls.Panels
             Visible = true;
         }
 
+        /// <summary>
+        /// Gets the center X position of the panel based on the form width.
+        /// </summary>
+        /// <param name="formWidth"></param>
+        /// <returns></returns>
         public int GetPanelCenterX(int formWidth)
         {
             return (int)(formWidth - this.Width) / 2;
         }
 
+        /// <summary>
+        /// Gets the center Y position of the panel based on the form height.
+        /// </summary>
+        /// <param name="formHeight"></param>
+        /// <returns></returns>
         public int GetPanelCenterY(int formHeight)
         {
             return (int)(formHeight - this.Height) / 2;
