@@ -13,9 +13,12 @@ using WMPLib;
 
 namespace JapanezePuzzle
 {
+    /// <summary>
+    /// Main form of the application.
+    /// </summary>
     public partial class MainForm : Form
     {
-        // Path to music files
+        // Path to the music file
         private string _tempFile = Path.Combine(Path.GetTempPath(), "musicBackground.mp3");
 
         // Volume status
@@ -26,6 +29,9 @@ namespace JapanezePuzzle
             set { _volumeIsOn = value; }
         }
 
+        /// <summary>
+        /// Constructor for the MainForm class.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -68,7 +74,10 @@ namespace JapanezePuzzle
             SwitchControl(new Controls.MainMenuControl());
         }
 
-        // Change current Control
+        /// <summary>
+        /// Switches the current control to a new one.
+        /// </summary>
+        /// <param name="newControl"></param>
         public void SwitchControl(UserControl newControl)
         {
             this.Controls.Clear();
@@ -76,7 +85,11 @@ namespace JapanezePuzzle
             newControl.Dock = DockStyle.Fill;
         }
 
-        // Switch the music
+        /// <summary>
+        /// Switches the music on or off.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void SwitchMusic(object sender, EventArgs e)
         {
             if (VolumeIsOn)

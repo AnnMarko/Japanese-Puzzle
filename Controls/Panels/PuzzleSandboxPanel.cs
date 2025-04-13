@@ -56,6 +56,10 @@ namespace JapanezePuzzle.Controls.Panels
             set => _sizeOfCell = value;
         }
 
+        /// <summary>
+        /// Constructor for the PuzzleSandboxPanel class.
+        /// </summary>
+        /// <param name="puzzle"></param>
         public PuzzleSandboxPanel(Classes.Puzzle puzzle)
         {
             // Puzzle

@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// Represents the level selection control in the game.
+    /// </summary>
     public partial class LevelSelectionControl : TemplateControl
     {
         private PictureBox _arrowBackIcon;
@@ -18,6 +21,9 @@ namespace JapanezePuzzle.Controls
         Controls.Buttons.LevelSelectionButton _mediumLevelButton;
         Controls.Buttons.LevelSelectionButton _difficultLevelButton;
 
+        /// <summary>
+        /// Constructor for the LevelSelectionControl class.
+        /// </summary>
         public LevelSelectionControl()
         {
             InitializeComponent();
@@ -66,13 +72,14 @@ namespace JapanezePuzzle.Controls
 
             // Back arrow
             _arrowBackIcon = new PictureBox();
-            _arrowBackIcon.Image = Properties.Resources.backArrowImage; // some arrow icon
+            _arrowBackIcon.Image = Properties.Resources.backArrowImage;
             _arrowBackIcon.SizeMode = PictureBoxSizeMode.Zoom;
             _arrowBackIcon.Size = new Size(40, 40);
             _arrowBackIcon.BackColor = Color.Transparent;
             _arrowBackIcon.Left = 20;
             _arrowBackIcon.Top = 20;
             _arrowBackIcon.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // Add the click event for the back arrow
             _arrowBackIcon.Click += (s, e) =>
             {
                 if (this.ParentForm is MainForm mainForm)
@@ -87,6 +94,9 @@ namespace JapanezePuzzle.Controls
             this.Resize += (s, e) => ArrangeLayout();
         }
 
+        /// <summary>
+        /// Arranges the layout of the controls.
+        /// </summary>
         private void ArrangeLayout()
         {
             int buttonWidth = this.ClientSize.Width / 4;
@@ -111,19 +121,33 @@ namespace JapanezePuzzle.Controls
             _difficultLevelButton.Top = (this.ClientSize.Height - buttonHeight) / 2;
         }
 
-        // Buttons events
+        /// <summary>
+        /// Handles the click event for the Easy button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EasyButton_Click(object sender, EventArgs e)
         {
             var levelSelection = new PuzzleListControl(0);
             ((MainForm)this.ParentForm).SwitchControl(levelSelection);
         }
 
+        /// <summary>
+        /// Handles the click event for the Medium button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MediumButton_Click(object sender, EventArgs e)
         {
             var levelSelection = new PuzzleListControl(1);
             ((MainForm)this.ParentForm).SwitchControl(levelSelection);
         }
 
+        /// <summary>
+        /// Handles the click event for the Difficult button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DifficultButton_Click(object sender, EventArgs e)
         {
             var levelSelection = new PuzzleListControl(2);

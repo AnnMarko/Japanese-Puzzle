@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// This class represents a control for saving user's puzzle.
+    /// </summary>
     public partial class PuzzleSavingControl : UserControl
     {
         // Puzzle
@@ -32,6 +35,10 @@ namespace JapanezePuzzle.Controls
         // Placeholder for puzzle name
         private string _placeholder;
 
+        /// <summary>
+        /// Constructor for the PuzzleSavingControl class.
+        /// </summary>
+        /// <param name="puzzle"></param>
         public PuzzleSavingControl(Classes.Puzzle puzzle)
         {
             // Double Buffer
@@ -112,6 +119,9 @@ namespace JapanezePuzzle.Controls
             this.Resize += (s, e) => ArrangeLayout();
         }
 
+        /// <summary>
+        /// Arranges the layout of the controls.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center the puzzle panel
@@ -130,6 +140,11 @@ namespace JapanezePuzzle.Controls
             _confirmButton.Top = (int)(panelCenterY + _puzzlePanel.SideSize + _nameTextBox.Height + 20 + 0.2 * (this.ClientSize.Height - 600));
         }
 
+        /// <summary>
+        /// Handles the click event of the confirm button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             // Check if the name is empty

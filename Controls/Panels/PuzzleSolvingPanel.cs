@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls.Panels
 {
+    /// <summary>
+    /// This class represents a panel that displays a puzzle for solving.
+    /// </summary>
     public class PuzzleSolvingPanel : PuzzlePanel
     {
         private Classes.Puzzle _puzzle;
@@ -48,10 +51,16 @@ namespace JapanezePuzzle.Controls.Panels
             get => _sizeOfCell;
             set => _sizeOfCell = value;
         }
-
+        /// <summary>
+        /// Constructor for the PuzzleSolvingPanel class.
+        /// </summary>
+        /// <param name="puzzle"></param>
         public PuzzleSolvingPanel(Classes.Puzzle puzzle)
         {
+            // Puzzle
             _puzzle = puzzle;
+
+            // Rows and cols
             Rows = CalculateRows(puzzle);
             Cols = CalculateCols(puzzle);
             NumberedRows = Rows - puzzle.Rows;
@@ -70,18 +79,25 @@ namespace JapanezePuzzle.Controls.Panels
                 }
             }
 
+            // Size
             int maxCells = Math.Max(Rows, Cols);
 
             CellSize = Math.Min(MAX_SIZE / maxCells, MAX_CELL_SIZE);
             Size = new Size(CellSize * Cols, CellSize * Rows);
             SideSize = CellSize * Math.Max(Cols, Rows);
 
+            // Cells array
             Cells = new PictureBox[Rows, Cols];
 
             // Panel settings
             BackColor = Color.Black;
         }
 
+        /// <summary>
+        /// Calculates the number of rows in the panel (puzzle rows + numbered rows).
+        /// </summary>
+        /// <param name="puzzle"></param>
+        /// <returns></returns>
         private int CalculateRows(Classes.Puzzle puzzle)
         {
             int result = puzzle.Rows;
@@ -100,6 +116,11 @@ namespace JapanezePuzzle.Controls.Panels
             return result;
         }
 
+        /// <summary>
+        /// Calculates the number of columns in the panel (puzzle cols + numbered cols).
+        /// </summary>
+        /// <param name="puzzle"></param>
+        /// <returns></returns>
         private int CalculateCols(Classes.Puzzle puzzle)
         {
             int result = puzzle.Cols;
@@ -118,6 +139,9 @@ namespace JapanezePuzzle.Controls.Panels
             return result;
         }
 
+        /// <summary>
+        /// Draws the puzzle on the panel.
+        /// </summary>
         override public void DrawPuzzle()
         {
             Visible = false;
@@ -236,6 +260,10 @@ namespace JapanezePuzzle.Controls.Panels
             Visible = true;
         }
 
+        /// <summary>
+        /// Checks if the puzzle is solved.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckIfPuzzleIsSolved()
         {
             int length = _puzzle.Cols;
@@ -283,6 +311,9 @@ namespace JapanezePuzzle.Controls.Panels
             return true;
         }
 
+        /// <summary>
+        /// Sends a win event to the parent control.
+        /// </summary>
         private void SendWin()
         {
             if (this.Parent is PuzzleSolvingControl puzzleSolving)

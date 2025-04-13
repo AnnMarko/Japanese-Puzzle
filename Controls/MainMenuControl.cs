@@ -11,71 +11,112 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// Represents the main menu control in the game.
+    /// </summary>
     public partial class MainMenuControl : TemplateControl
     {
-        protected Bitmap _backgroundImage = Properties.Resources.mainMenuBackground;   // background
+        // background
+        private Bitmap _backgroundImage = Properties.Resources.mainMenuBackground;
 
+        // Title
+        private PictureBox _titleImage;
+
+        // Button Play
+        private Controls.Buttons.OptionButton _playButton;
+
+        // Button Sandbox
+        private Controls.Buttons.OptionButton _sandboxButton;
+
+        // Button Exit
+        private Controls.Buttons.OptionButton _exitButton;
+
+        /// <summary>
+        /// Constructor for the MainMenuControl class.
+        /// </summary>
         public MainMenuControl()
         {
             InitializeComponent();
 
             // Title
-            var title = new PictureBox();
-            title.Image = Properties.Resources.mainMenuTitle;
-            title.SizeMode = PictureBoxSizeMode.Zoom;
-            title.Size = new Size(580, 180);
-            title.BackColor = Color.Transparent;
-            title.Left = (this.ClientSize.Width - title.Width) / 2;
-            title.Top = (int)(100 + (this.ClientSize.Height - 450) * 0.1);
-            title.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            _titleImage = new PictureBox();
+            _titleImage.Image = Properties.Resources.mainMenuTitle;
+            _titleImage.SizeMode = PictureBoxSizeMode.Zoom;
+            _titleImage.Size = new Size(580, 180);
+            _titleImage.BackColor = Color.Transparent;
+            _titleImage.Left = (this.ClientSize.Width - _titleImage.Width) / 2;
+            _titleImage.Top = (int)(100 + (this.ClientSize.Height - 450) * 0.1);
+            _titleImage.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
             // Add title
-            this.Controls.Add(title);
+            this.Controls.Add(_titleImage);
 
             // Button Play
-            var playButton = new Controls.Buttons.OptionButton();
-            playButton.Text = "Play";
-            playButton.Width = 250;
-            playButton.Height = 50;
-            playButton.Top = this.Height - playButton.Height * 3 - 100;
-            playButton.Left = (this.Width - playButton.Width) / 2;
-            playButton.Anchor = AnchorStyles.Bottom;
-            playButton.Click += PlayButton_Click;
+            _playButton = new Controls.Buttons.OptionButton();
+            _playButton.Text = "Play";
+            _playButton.Click += PlayButton_Click;
+            this.Controls.Add(_playButton);
 
             // Button Edit
-            var editorButton = new Controls.Buttons.OptionButton();
-            editorButton.Text = "Sandbox";
-            editorButton.Width = 250;
-            editorButton.Height = 50;
-            editorButton.Top = this.Height - editorButton.Height * 2 - 80;
-            editorButton.Left = playButton.Left;
-            editorButton.Anchor = playButton.Anchor;
-            editorButton.Click += EditorButton_Click;
+            _sandboxButton = new Controls.Buttons.OptionButton();
+            _sandboxButton.Text = "Sandbox";
+            _sandboxButton.Click += EditorButton_Click;
+            this.Controls.Add(_sandboxButton);
 
             // Button Exit
-            var exitButton = new Controls.Buttons.OptionButton();
-            exitButton.Text = "Exit";
-            exitButton.Width = 250;
-            exitButton.Height = 50;
-            exitButton.Top = this.Height - exitButton.Height - 60;
-            exitButton.Left = playButton.Left;
-            exitButton.Anchor = playButton.Anchor;
-            exitButton.Click += (s, e) => Application.Exit();
+            _exitButton = new Controls.Buttons.OptionButton();
+            _exitButton.Text = "Exit";
+            _exitButton.Click += (s, e) => Application.Exit();
+            this.Controls.Add(_exitButton);
 
-            // Add buttons
-            this.Controls.Add(playButton);
-            this.Controls.Add(editorButton);
-            this.Controls.Add(exitButton);
+            // Position everything
+            this.Resize += (s, e) => ArrangeLayout();
         }
 
-        // Button Play Click Event
+        /// <summary>
+        /// Arranges the layout of the controls.
+        /// </summary>
+        private void ArrangeLayout()
+        {
+            int buttonWidth = this.ClientSize.Width / 4;
+            int buttonHeight = 50;
+            int buttonCenterX = (this.ClientSize.Width - buttonWidth) / 2;
+
+            // Play button
+            _playButton.Width = buttonWidth;
+            _playButton.Height = buttonHeight;
+            _playButton.Left = buttonCenterX;
+            _playButton.Top = this.ClientSize.Height - 3 * buttonHeight - 70;
+
+            // Sandbox button
+            _sandboxButton.Width = buttonWidth;
+            _sandboxButton.Height = buttonHeight;
+            _sandboxButton.Left = buttonCenterX;
+            _sandboxButton.Top = this.ClientSize.Height - 2 * buttonHeight - 50;
+
+            // Exit button
+            _exitButton.Width = buttonWidth;
+            _exitButton.Height = buttonHeight;
+            _exitButton.Left = buttonCenterX;
+            _exitButton.Top = this.ClientSize.Height - buttonHeight - 30;
+        }
+
+        /// <summary>
+        /// Handles the click event for the Play button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlayButton_Click(object sender, EventArgs e)
         {
             var levelSelection = new LevelSelectionControl();
             ((MainForm)this.ParentForm).SwitchControl(levelSelection);
         }
 
-        // Button Edit Click Event
+        /// <summary>
+        /// Handles the click event for the Sandbox button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditorButton_Click(object sender, EventArgs e)
         {
             var sandbox = new SandboxControl();

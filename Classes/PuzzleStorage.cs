@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,9 +36,21 @@ namespace JapanezePuzzle.Classes
             }
 
             var json = File.ReadAllText(filePath);
-            var puzzles = JsonConvert.DeserializeObject<List<Puzzle>>(json);
 
-            return puzzles ?? new List<Puzzle>();
+            // Deserialize the JSON back into a list of Puzzle objects
+            try
+            {
+                var puzzles = JsonConvert.DeserializeObject<List<Puzzle>>(json);
+
+                return puzzles ?? new List<Puzzle>();
+            }
+            catch (Exception) // if file is corrupted, rewrite it
+            {
+
+                var puzzles = Classes.Puzzle.CreateHardcodedPuzzles();
+                PuzzleStorage.SavePuzzles(puzzles);
+                return puzzles ?? new List<Puzzle>();
+            }
         }
 
         /// <summary>

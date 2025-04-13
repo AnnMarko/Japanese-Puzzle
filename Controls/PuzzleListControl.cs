@@ -8,8 +8,12 @@ using System.Xml.Linq;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// This class represents a control that displays a list of puzzles.
+    /// </summary>
     public partial class PuzzleListControl : TemplateControl
     {
+        // Images of arrows
         private PictureBox _arrowBackIcon;
         private PictureBox _arrowLeftIcon;
         private PictureBox _arrowRightIcon;
@@ -36,10 +40,16 @@ namespace JapanezePuzzle.Controls
         private const int PANEL_OFFSET_DISTANCE = 600; // puzzle panel width for referencing
         private int _panelCenterX; // will store the center X for puzzle panels
 
+        /// <summary>
+        /// Constructor for the PuzzleListControl class.
+        /// </summary>
+        /// <param name="difficulty"></param>
+        /// <param name="currentIndex"></param>
         public PuzzleListControl(int difficulty, int currentIndex = 0)
         {
             InitializeComponent();
 
+            // Variables storage
             _difficulty = difficulty;
             _currentIndex = currentIndex;
 
@@ -142,6 +152,11 @@ namespace JapanezePuzzle.Controls
             UpdateArrows();
         }
 
+        /// <summary>
+        /// Handles the click event for the left arrow icon.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ArrowLeftIcon_Click(object sender, EventArgs e)
         {
             if (_isSliding || _currentIndex <= 0) return;
@@ -151,6 +166,11 @@ namespace JapanezePuzzle.Controls
             StartSlide(-1);
         }
 
+        /// <summary>
+        /// Handles the click event for the right arrow icon.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ArrowRightIcon_Click(object sender, EventArgs e)
         {
             if (_isSliding || _currentIndex >= _puzzles.Count - 1) return;
@@ -160,6 +180,10 @@ namespace JapanezePuzzle.Controls
             StartSlide(+1);
         }
 
+        /// <summary>
+        /// Starts the sliding animation for the puzzle panels.
+        /// </summary>
+        /// <param name="direction"></param>
         private void StartSlide(int direction)
         {
             _isSliding = true;
@@ -198,6 +222,11 @@ namespace JapanezePuzzle.Controls
             UpdateArrows();
         }
 
+        /// <summary>
+        /// Handles the tick event for the slide timer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SlideTimer_Tick(object sender, EventArgs e)
         {
             _slideStep++;
@@ -250,14 +279,18 @@ namespace JapanezePuzzle.Controls
             }
         }
 
+        /// <summary>
+        /// Updates the visibility of the left and right arrows based on the current index.
+        /// </summary>
         private void UpdateArrows()
         {
             _arrowLeftIcon.Visible = (_currentIndex > 0);
             _arrowRightIcon.Visible = (_currentIndex < _puzzles.Count - 1);
         }
 
-        // This arranges the arrows and puzzle panel in the center 
-        // whenever the control is resized.
+        /// <summary>
+        /// Arranges the layout of the controls.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center X for the puzzle panel
@@ -294,15 +327,13 @@ namespace JapanezePuzzle.Controls
             }
         }
 
+        /// <summary>
+        /// Handles the click event for the puzzle panel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PuzzlePannel_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < _currentPanel.Cells.GetLength(0); i++)
-            {
-                for (int j = 0; j < _currentPanel.Cells.GetLength(1); j++)
-                {
-                    _currentPanel.Cells[i, j].Click -= PuzzlePannel_Click;
-                }
-            }
             var puzzleStartConfirmation = new PuzzleStartConfirmationControl(_difficulty, _currentIndex, _currentPanel);
             ((MainForm)this.ParentForm).SwitchControl(puzzleStartConfirmation);
         }
