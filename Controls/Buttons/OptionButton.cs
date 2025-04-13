@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls.Buttons
 {
+    /// <summary>
+    /// Represents a button used for option selection in the game.
+    /// </summary>
     public class OptionButton : Button
     {
         public OptionButton()
