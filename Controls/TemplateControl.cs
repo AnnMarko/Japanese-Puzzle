@@ -35,6 +35,13 @@ namespace JapanezePuzzle.Controls
         /// </summary>
         public TemplateControl()
         {
+
+            // Double Buffer
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer
+                      | ControlStyles.UserPaint
+                      | ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+
             InitializeComponent();
 
             // Control settings

@@ -41,12 +41,6 @@ namespace JapanezePuzzle.Controls
         /// <param name="puzzle"></param>
         public PuzzleSavingControl(Classes.Puzzle puzzle)
         {
-            // Double Buffer
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer
-                      | ControlStyles.UserPaint
-                      | ControlStyles.AllPaintingInWmPaint, true);
-            this.UpdateStyles();
-
             InitializeComponent();
 
             // Background
