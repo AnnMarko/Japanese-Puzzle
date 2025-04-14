@@ -311,7 +311,7 @@ namespace JapanezePuzzle.Classes
                 {
                     for (int k = 0; k < PuzzleNumbers[i][j].Length; k++)
                     {
-                        if (PuzzleNumbers[i][j][k] == 1)
+                        if (PuzzleNumbers[i][j][k] != 0)
                         {
                             return true;
                         }
