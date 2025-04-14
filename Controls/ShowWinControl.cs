@@ -74,10 +74,8 @@ namespace JapanezePuzzle.Controls
             this.Controls.Add(_arrowBackIcon);
 
             // Congrats label
-            _congratsLabel = new Controls.Labels.HeaderLabel()
-            {
-                Text = "Great! You did it!",
-            };
+            _congratsLabel = new Controls.Labels.HeaderLabel();
+            _congratsLabel.Text = "Great! You did it!";
             this.Controls.Add(_congratsLabel);
             _congratsLabel.BringToFront();
 

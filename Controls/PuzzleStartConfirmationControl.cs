@@ -90,11 +90,9 @@ namespace JapanezePuzzle.Controls
             this.Controls.Add(_startButton);
 
             // Name of puzzle Label
-            _nameLabel = new Controls.Labels.HeaderLabel()
-            {
-                Text = $"{_puzzlePanel.GetPuzzle().Name}",
-                BackColor = Color.Transparent,
-            };
+            _nameLabel = new Controls.Labels.HeaderLabel();
+            _nameLabel.Text = $"{_puzzlePanel.GetPuzzle().Name}";
+            _nameLabel.BackColor = Color.Transparent;
             this.Controls.Add(_nameLabel);
             _nameLabel.BringToFront();
 

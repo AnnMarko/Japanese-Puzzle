@@ -36,7 +36,7 @@ namespace JapanezePuzzle.Controls
         public TemplateControl()
         {
 
-            // Double Buffer
+            // Enable double buffering for smoothness
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer
                       | ControlStyles.UserPaint
                       | ControlStyles.AllPaintingInWmPaint, true);
@@ -54,7 +54,6 @@ namespace JapanezePuzzle.Controls
             this.BackgroundImageLayout = ImageLayout.Zoom;
             this.Width = 800;
             this.Height = 550;
-            this.DoubleBuffered = true;   // Enable double buffering for smoothness
             this.Load += TemplateControl_Load;
 
             // Sound icon
