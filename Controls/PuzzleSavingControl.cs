@@ -15,7 +15,7 @@ namespace JapanezePuzzle.Controls
     /// <summary>
     /// This class represents a control for saving user's puzzle.
     /// </summary>
-    public partial class PuzzleSavingControl : UserControl
+    public partial class PuzzleSavingControl : TemplateControl
     {
         // Puzzle
         private Classes.Puzzle _puzzle;
@@ -76,8 +76,7 @@ namespace JapanezePuzzle.Controls
             // Confirm button
             _confirmButton = new Controls.Buttons.OptionButton();
             _confirmButton.Text = "Confirm";
-            _confirmButton.Font = new Font("Segoe UI", 14, FontStyle.Bold);
-            _confirmButton.ForeColor = Color.LightSlateGray;
+            _confirmButton.Font = new Font(this.Font.FontFamily, 14, this.Font.Style);
             _confirmButton.Width = 200;
             _confirmButton.Height = 40;
             _confirmButton.TextAlign = ContentAlignment.MiddleCenter;
@@ -88,7 +87,7 @@ namespace JapanezePuzzle.Controls
             _placeholder = "Type name of your puzzle...";
             _nameTextBox = new Controls.TextBoxes.NameTextBox();
             _nameTextBox.Text = _placeholder;
-            _nameTextBox.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+            _nameTextBox.Font = new Font(this.Font.FontFamily, 14, this.Font.Style);
             // When the textbox gains focus, clear the placeholder text if it's still there
             _nameTextBox.Enter += (s, e) =>
             {
