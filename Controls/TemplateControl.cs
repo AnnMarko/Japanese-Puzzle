@@ -12,11 +12,13 @@ using WMPLib;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// TemplateControl class represents a user control with a background image and falling petals. It's used by every user control in the application.
+    /// </summary>
     public partial class TemplateControl : UserControl
     {
         // Images
         private PictureBox _volumeSettingIcon;   // volume settings
-
         private Bitmap _petalImage;   // sakura petal
 
         // Timer
@@ -28,7 +30,9 @@ namespace JapanezePuzzle.Controls
         // Random
         private Random rand = new Random();
 
-
+        /// <summary>
+        /// Constructor for the TemplateControl class.
+        /// </summary>
         public TemplateControl()
         {
             InitializeComponent();
@@ -86,7 +90,11 @@ namespace JapanezePuzzle.Controls
             _petalImage = Properties.Resources.sakuraPetal;
         }
 
-        // Assign a sound icon on load
+        /// <summary>
+        /// Event handler for the Load event of the TemplateControl. It sets the volume icon based on the current volume state.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TemplateControl_Load(object sender, EventArgs e)
         {
             if (this.ParentForm is MainForm mainForm)
@@ -100,7 +108,10 @@ namespace JapanezePuzzle.Controls
             _petals.Clear();
         }
 
-        // Adding logics to OnPaintBackground
+        /// <summary>
+        /// Override the OnPaintBackground method to draw the background image and petals.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             // Scaling on the smaller side
@@ -150,11 +161,13 @@ namespace JapanezePuzzle.Controls
             }
         }
 
-        // Petals animation
+        /// <summary>
+        /// Update the petals' positions and remove them if they are out of bounds.
+        /// </summary>
         private void UpdatePetals()
         {
-            // Generate new petal (max 40)
-            if (rand.NextDouble() < 0.01)
+            // Generate new petal
+            if (_petals.Count < 40 && rand.NextDouble() < 0.01)
             {
                 _petals.Add(new Classes.Petal
                 {
@@ -206,7 +219,14 @@ namespace JapanezePuzzle.Controls
             this.Invalidate();
         }
 
-        // Drawing with rotation
+        /// <summary>
+        /// Draws a rotated image at the specified coordinates.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="image"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="angle"></param>
         private void DrawRotatedImage(Graphics g, Image image, float x, float y, float angle)
         {
             // Save the matrix

@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// This class represents a control that displays a congratulatory message and the solved puzzle.
+    /// </summary>
     public partial class ShowWinControl : TemplateControl
     {
         // Puzzle
@@ -28,6 +31,12 @@ namespace JapanezePuzzle.Controls
         private int _difficulty;
         private int _currentIndex;
 
+        /// <summary>
+        /// Constructor for the ShowWinControl class.
+        /// </summary>
+        /// <param name="difficulty"></param>
+        /// <param name="currentIndex"></param>
+        /// <param name="puzzle"></param>
         public ShowWinControl(int difficulty, int currentIndex, Classes.Puzzle puzzle)
         {
             InitializeComponent();
@@ -76,6 +85,9 @@ namespace JapanezePuzzle.Controls
             this.Resize += (s, e) => ArrangeLayout();
         }
 
+        /// <summary>
+        /// Arranges the layout of the control.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center the puzzle panel

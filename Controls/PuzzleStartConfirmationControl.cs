@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// Control for confirming the start of a puzzle.
+    /// </summary>
     public partial class PuzzleStartConfirmationControl : TemplateControl
     {
         // Puzzle
@@ -29,6 +32,12 @@ namespace JapanezePuzzle.Controls
         private int _difficulty;
         private int _currentIndex;
 
+        /// <summary>
+        /// Constructor for the PuzzleStartConfirmationControl class.
+        /// </summary>
+        /// <param name="difficulty"></param>
+        /// <param name="currentIndex"></param>
+        /// <param name="puzzlePanel"></param>
         public PuzzleStartConfirmationControl(int difficulty, int currentIndex, Controls.Panels.PuzzlePanel puzzlePanel)
         {
             InitializeComponent();
@@ -93,6 +102,9 @@ namespace JapanezePuzzle.Controls
             this.Resize += (s, e) => ArrangeLayout();
         }
 
+        /// <summary>
+        /// Arranges the layout of the control.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center the puzzle panel
@@ -111,6 +123,11 @@ namespace JapanezePuzzle.Controls
             _nameLabel.Top = panelCenterY - 70;
         }
 
+        /// <summary>
+        /// Handles the event when the user clicks the start button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartButton_Click(object sender, EventArgs e)
         {
             var solving = new PuzzleSolvingControl(_puzzlePanel.GetPuzzle(), _difficulty, _currentIndex);

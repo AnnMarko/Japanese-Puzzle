@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// Represents a control for the sandbox mode of the game.
+    /// </summary>
     public partial class SandboxControl : TemplateControl
     {
         // Puzzle
@@ -25,6 +28,10 @@ namespace JapanezePuzzle.Controls
         // Button save
         private Controls.Buttons.OptionButton _saveButton;
 
+        /// <summary>
+        /// Constructor for the SandboxControl class.
+        /// </summary>
+        /// <param name="puzzle"></param>
         public SandboxControl(Classes.Puzzle puzzle = null)
         {
             InitializeComponent();
@@ -81,6 +88,9 @@ namespace JapanezePuzzle.Controls
             this.Resize += (s, e) => ArrangeLayout();
         }
 
+        /// <summary>
+        /// Arranges the layout of the controls.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center the puzzle panel
@@ -94,6 +104,12 @@ namespace JapanezePuzzle.Controls
             _saveButton.Left = (this.ClientSize.Width - _saveButton.Width) / 2;
             _saveButton.Top = (int)((this.ClientSize.Height - _puzzlePanel.SideSize) / 2 + _puzzlePanel.SideSize + 10 + 0.1 * (this.ClientSize.Height - 600));
         }
+
+        /// <summary>
+        /// Handles the click event of the save button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
             // Save current puzzle numbers

@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace JapanezePuzzle.Controls
 {
+    /// <summary>
+    /// Control for solving the puzzle.
+    /// </summary>
     public partial class PuzzleSolvingControl : TemplateControl
     {
         // Puzzle
@@ -26,6 +29,12 @@ namespace JapanezePuzzle.Controls
         private int _difficulty;
         private int _currentIndex;
 
+        /// <summary>
+        /// Constructor for the PuzzleSolvingControl class.
+        /// </summary>
+        /// <param name="puzzle"></param>
+        /// <param name="difficulty"></param>
+        /// <param name="currentIndex"></param>
         public PuzzleSolvingControl(Classes.Puzzle puzzle, int difficulty, int currentIndex)
         {
             InitializeComponent();
@@ -69,6 +78,9 @@ namespace JapanezePuzzle.Controls
             _puzzlePanel.DrawPuzzle();
         }
 
+        /// <summary>
+        /// Arranges the layout of the control.
+        /// </summary>
         private void ArrangeLayout()
         {
             // The center the puzzle panel
@@ -79,6 +91,9 @@ namespace JapanezePuzzle.Controls
             _puzzlePanel.Top = panelCenterY;
         }
 
+        /// <summary>
+        /// Handles the event when the user wins the game.
+        /// </summary>
         public void UserWinEvent()
         {
             if (this.ParentForm is MainForm mainForm)
