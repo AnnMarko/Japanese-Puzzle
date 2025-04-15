@@ -203,12 +203,6 @@
     <None Include="images\mainMenuTitle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\volumeOff.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\volumeOn.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="images\volumeOffWhite.png" />
   </ItemGroup>
   <ItemGroup>
@@ -216,12 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\sakuraPetal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\background1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\colorfulBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\gradientBackground.png" />
