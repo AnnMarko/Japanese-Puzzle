@@ -22,7 +22,7 @@ namespace JapanezePuzzle
         private string _tempFile = Path.Combine(Path.GetTempPath(), "musicBackground.mp3");
 
         // Volume status
-        private bool _volumeIsOn = false;
+        private bool _volumeIsOn;
         public bool VolumeIsOn
         {
             get { return _volumeIsOn; }
@@ -51,13 +51,22 @@ namespace JapanezePuzzle
             };
 
             // Music settings
+            _volumeIsOn = true;
+
             File.WriteAllBytes(_tempFile, Properties.Resources.musicBackground);
 
             axWindowsMediaPlayer1.settings.autoStart = false;
             axWindowsMediaPlayer1.URL = _tempFile;
             axWindowsMediaPlayer1.settings.setMode("loop", true);
             axWindowsMediaPlayer1.settings.volume = 2;
-            //axWindowsMediaPlayer1.Ctlcontrols.play();
+            if (VolumeIsOn)
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+            }
+            else
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+            }
 
             // JSON settings
             // Attempt to load from JSON
