@@ -238,5 +238,8 @@
   <ItemGroup>
     <None Include="images\mediumLevel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="screenshots\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
