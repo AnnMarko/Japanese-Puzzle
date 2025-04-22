@@ -63,3 +63,6 @@
   - Design your puzzle by filling in the grid.
   - Provide a name for your puzzle.
   - Click "Save" to add it to the "Easy" difficulty level.
+ 
+## Screenshots
+
