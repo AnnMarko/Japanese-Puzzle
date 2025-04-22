@@ -22,13 +22,13 @@
 - **Puzzle Creation Constraints**:
   - Prevents saving of empty puzzles.
   - Requires a name for each puzzle before saving.
-  - Upon saving, a confirmation message indicates the puzzle is saved under the "Easy" difficulty level.
+  - Upon saving, a confirmation message indicates the puzzle is saved under the "Easy" difficulty level.
 
 ## Technologies Used
 
 - **.NET Framework**: Windows Forms for the graphical user interface.
 - **NAudio**: Handles audio playback functionalities.
-- **Newtonsoft.Json**: Manages JSON serialization and deserialization for puzzle data.
+- **Newtonsoft.Json**: Manages JSON serialization and deserialization for puzzle data.
 
 ## Installation
 
@@ -46,7 +46,7 @@
      - `Newtonsoft.Json`
 4. **Build and Run**:
    - Set the startup project to `JapanesePuzzle`.
-   - Press `F5` to build and run the application.
+   - Press `F5` to build and run the application.
 
 ## Usage
 
@@ -62,7 +62,7 @@
 - **Creating Puzzles**:
   - Design your puzzle by filling in the grid.
   - Provide a name for your puzzle.
-  - Click "Save" to add it to the "Easy" difficulty level.
+  - Click "Save" to add it to the "Easy" difficulty level.
  
 ## Screenshots
 
