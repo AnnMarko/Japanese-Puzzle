@@ -66,3 +66,5 @@
  
 ## Screenshots
 
+After clicking on "Play" button you need to select the complexity level of puzzles:
+![Level selection](screenshots/level_selection.png)
