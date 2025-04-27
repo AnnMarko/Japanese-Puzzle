@@ -71,3 +71,6 @@ After clicking on "Play" button you need to select the complexity level of puzzl
 
 Then you can select puzzle from the list. For example, the fish puzzle:
 ![Puzzle selection](screenshots/fish_puzzle_selection.png)
+
+Once selected, you will see a pleasant interface with a panel of puzzle and start solving it:
+![Puzzle solving panel](screenshots/start_solving.png)
