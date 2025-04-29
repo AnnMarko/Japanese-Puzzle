@@ -75,3 +75,6 @@ Then you can select puzzle from the list. For example, the fish puzzle:
 Once selected, you will see a pleasant interface with a panel of puzzle and start solving it:
 ![Puzzle solving panel](screenshots/start_solving.png)
 ![Puzzle solving process](screenshots/solving_process.png)
+
+The program will notify you when you finish the puzzle:
+![Puzzle solved](screenshots/finish_solving.png)
