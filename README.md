@@ -78,3 +78,6 @@ Once selected, you will see a pleasant interface with a panel of puzzle and star
 
 The program will notify you when you finish the puzzle:
 ![Puzzle solved](screenshots/finish_solving.png)
+
+It was an easy one. But this game also has puzzles like that (difficult level):
+![Difficult puzzle](screenshots/difficult_example.png)
