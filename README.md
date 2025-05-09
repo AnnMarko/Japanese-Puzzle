@@ -81,3 +81,6 @@ The program will notify you when you finish the puzzle:
 
 It was an easy one. But this game also has puzzles like that (difficult level):
 ![Difficult puzzle](screenshots/difficult_example.png)
+
+On the main page, you can also see another button called “Sandbox”:
+![Main Menu Screenshot](screenshots/main_menu.png)
