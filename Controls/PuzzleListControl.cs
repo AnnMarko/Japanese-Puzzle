@@ -334,14 +334,10 @@ namespace JapanezePuzzle.Controls
         /// <param name="e"></param>
         private void PuzzlePannel_Click(object sender, EventArgs e)
         {
-            var puzzleStartConfirmation = new PuzzleStartConfirmationControl(_difficulty, _currentIndex, _currentPanel);
             if (this.ParentForm is MainForm mainForm)
             {
+                var puzzleStartConfirmation = new PuzzleStartConfirmationControl(_difficulty, _currentIndex, _currentPanel);
                 mainForm.SwitchControl(puzzleStartConfirmation);
-            }
-            else
-            {
-                MessageBox.Show("Main form not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
