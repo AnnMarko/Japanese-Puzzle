@@ -84,3 +84,6 @@ It was an easy one. But this game also has puzzles like that (difficult level):
 
 On the main page, you can also see another button called “Sandbox”:
 ![Main Menu Screenshot](screenshots/main_menu.png)
+
+When you click on it you see an editor, where you can draw a picture by clicking on squares:
+![Sandbox](screenshots/start_creating.png)
