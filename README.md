@@ -87,3 +87,5 @@ On the main page, you can also see another button called “Sandbox”:
 
 When you click on it you see an editor, where you can draw a picture by clicking on squares:
 ![Sandbox](screenshots/start_creating.png)
+
+If you try to save an empty picture, there is an error message.
