@@ -89,3 +89,6 @@ When you click on it you see an editor, where you can draw a picture by clicking
 ![Sandbox](screenshots/start_creating.png)
 
 If you try to save an empty picture, there is an error message.
+
+Let's draw something:
+![Sandbox creating process](screenshots/creating_process.png)
