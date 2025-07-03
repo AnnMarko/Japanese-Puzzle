@@ -92,3 +92,5 @@ If you try to save an empty picture, there is an error message.
 
 Let's draw something:
 ![Sandbox creating process](screenshots/creating_process.png)
+
+Numbers of black squares quantity are dynamically updated on every click on them.
