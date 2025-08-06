@@ -94,3 +94,5 @@ Let's draw something:
 ![Sandbox creating process](screenshots/creating_process.png)
 
 Numbers of black squares quantity are dynamically updated on every click on them.
+
+After drawing a picture you can save it:
